@@ -7,6 +7,7 @@
 - The String pool is a special area in the Java memory heap where String literals are stored. When you create a String object using double quotes, Java checks the pool to see if an identical String already exists. If it does, it returns a reference to that instance, otherwise, it creates a new String object in the pool.
 
 1. **What is Bean?**
+
 - In Spring, the objects that form the backbone of your application and that are managed by Spring IoC container are called Beans. A bean is an object that is instantiated, assembled, and otherwise managed by a Spring IoC container.
 
 1. **What is Bean Factory?**
@@ -36,11 +37,11 @@
 1. **Filter ArrayList using Java 8?**
 
 - You can filter an ArrayList using Java 8 Streams and Lambda expressions. For example:
-    ```java
-    List<String> filteredList = list.stream()
-                                    .filter(s -> s.startsWith("prefix"))
-                                    .collect(Collectors.toList());
-    ```
+  ```java
+  List<String> filteredList = list.stream()
+                                  .filter(s -> s.startsWith("prefix"))
+                                  .collect(Collectors.toList());
+  ```
 
 1. **Difference between RestController and Controller?**
 
@@ -147,26 +148,26 @@
 
     - In this scenario, a microservices architecture can be employed to handle the large amount of data efficiently. Here's a high-level structure:
     - **Microservices Setup:**
-        - Divide the application into smaller services based on business functionalities, such as user service, data service, and frontend service.
-        - Each microservice is responsible for a specific task and has its own database.
-        - Use asynchronous communication between microservices to prevent bottlenecks.
+      - Divide the application into smaller services based on business functionalities, such as user service, data service, and frontend service.
+      - Each microservice is responsible for a specific task and has its own database.
+      - Use asynchronous communication between microservices to prevent bottlenecks.
     - **Data Service:**
-        - This microservice handles interactions with the database where millions of data are stored.
-        - It exposes RESTful APIs to perform CRUD operations on the data.
-        - Utilize database sharding and indexing for efficient data retrieval and manipulation.
+      - This microservice handles interactions with the database where millions of data are stored.
+      - It exposes RESTful APIs to perform CRUD operations on the data.
+      - Utilize database sharding and indexing for efficient data retrieval and manipulation.
     - **Frontend Service:**
-        - This microservice handles the frontend presentation layer and user interactions.
-        - It consumes data from the data service via RESTful APIs.
-        - Implements caching mechanisms to reduce the load on the data service and improve frontend performance.
+      - This microservice handles the frontend presentation layer and user interactions.
+      - It consumes data from the data service via RESTful APIs.
+      - Implements caching mechanisms to reduce the load on the data service and improve frontend performance.
     - **Communication:**
-        - RESTful APIs are used for communication between microservices.
-        - Each microservice communicates with others asynchronously, reducing coupling and improving scalability.
+      - RESTful APIs are used for communication between microservices.
+      - Each microservice communicates with others asynchronously, reducing coupling and improving scalability.
     - **Scaling:**
-        - Each microservice can be scaled independently based on its workload.
-        - Horizontal scaling can be achieved by deploying multiple instances of each microservice behind a load balancer.
+      - Each microservice can be scaled independently based on its workload.
+      - Horizontal scaling can be achieved by deploying multiple instances of each microservice behind a load balancer.
     - **Monitoring and Management:**
-        - Use tools like Spring Boot Actuator and monitoring solutions to monitor the performance and health of microservices.
-        - Implement circuit breakers and retries to handle failures gracefully.
+      - Use tools like Spring Boot Actuator and monitoring solutions to monitor the performance and health of microservices.
+      - Implement circuit breakers and retries to handle failures gracefully.
 
 22. **Count repeated words in a string?**
 
@@ -195,6 +196,7 @@
 26. **How to create multiple threads?**
 
     - There are two main ways to create multiple threads in Java:
+
     1. Extending the Thread class.
     2. Implementing the Runnable interface.
 
@@ -278,21 +280,26 @@
     - Spring Boot is a framework for building standalone Spring-based applications with minimal configuration, focusing on simplicity and convention over configuration. Spring Cloud, on the other hand, is a set of tools and frameworks built on top of Spring Boot for building distributed systems and microservices architectures. Spring Cloud provides features like service discovery, configuration management, circuit breakers, and distributed tracing.
 
 44. **How do microservices communicate with each other? Internal Working and Steps to do so?**
+
     - Microservices communicate with each other through lightweight protocols like HTTP/HTTPS, messaging queues (e.g., RabbitMQ, Kafka), or RPC (Remote Procedure Call) mechanisms. The steps to enable communication between microservices typically involve:
+
     1. Service Registration: Each microservice registers itself with a service registry or discovery server upon startup.
     2. Service Discovery: When a microservice needs to communicate with another microservice, it queries the service registry to obtain the network location (host and port) of the target service.
     3. Communication: Once the location is obtained, the microservice can communicate with the target service using the appropriate communication protocol and exchange messages or data as needed.
 
-45. **What is build tool?**    
+45. **What is build tool?**
+
     - A build tool is a program-based utility that can be structured as a command line to automate the application building process.
     - It compiles code files into byte code, packing it into resource libraries or executable files.
-    
-    # **Types of build tools are:-**
+
+    ## **Types of build tools are:-**
+
     - Apache Ant
     - Apache Maven
     - Gradle
     - Jenkins
     - CMake
 
-    ## **Maven vs Gradle**
+    ### **Maven vs Gradle**
+
     - Maven offers simplicity and convention over configuration, while Gradle provides enhanced flexibility and customization.

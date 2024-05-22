@@ -21,7 +21,7 @@ public class ReverseStringPingPongBruteForce {
         for (int i = 0; i < n; i++) {
             if (words[i] == ' ') {
                 reverseEveryWord(words, start, i - 1);
-                start = i + 1;
+                start = i + 1; //skipping the space from character array by increasing start with +1.
             }
         }
         reverseEveryWord(words, start, n - 1);

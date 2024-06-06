@@ -303,3 +303,31 @@
     ### **Maven vs Gradle**
 
     - Maven offers simplicity and convention over configuration, while Gradle provides enhanced flexibility and customization.
+
+46. **Implement a thread-safe Singleton class in Java using the double-checked locking?**
+    - **Solution :** To create a thread-safe SIngleton class using double-checked locking in Java, we have to follow below steps:
+      - Declare a **private static volatile instance** variable.
+      - Define a **private constructor** to prevent instantiation from outside the class.
+      - Implement a **public static** method that returns the Singleton instance, using double-checked locking.
+      - **Implementation :**
+        ```java
+        public class Singleton{
+            // Volatile keyword ensures that changes to the uniqueInstance variable are visible to all the threads.
+            private static volatile Singleton uniqueInstance;
+
+            // private constructor
+            private Singleton(){}
+            public static Singleton getInstance(){
+                if(uniqueInstance == null){
+                    // First check (without locking).
+                    synchronized(Singleton.class){
+                    if(uniqueInstance == null){
+                        // Second Check (with locking).
+                        uniqueInstance = new Singleton();
+                    }
+                }
+            }
+            return uniqueInstance;
+            }
+        }
+        ```

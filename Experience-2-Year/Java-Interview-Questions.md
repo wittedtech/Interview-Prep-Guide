@@ -575,7 +575,9 @@
          ```
 
 
-24. Explain the Java memory model.
+24. **Explain the Java memory model.**
+
+   - 
 25. What is garbage collection, and how does it work?
 26. What are strong, weak, soft, and phantom references?
 27. Explain lambda expressions and functional interfaces in Java 8.

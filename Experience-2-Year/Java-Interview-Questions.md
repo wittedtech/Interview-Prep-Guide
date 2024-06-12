@@ -577,7 +577,8 @@
 
 24. **Explain the Java memory model.**
 
-   - 
+   - [Article](https://dip-mazumder.medium.com/java-memory-model-a-comprehensive-guide-ba9643b839e#:~:text=The%20Java%20Memory%20Model%20(JMM,framework%20for%20safe%20multi%2Dthreading.)
+   
 25. What is garbage collection, and how does it work?
 26. What are strong, weak, soft, and phantom references?
 27. Explain lambda expressions and functional interfaces in Java 8.

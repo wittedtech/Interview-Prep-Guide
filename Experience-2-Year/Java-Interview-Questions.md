@@ -144,14 +144,210 @@
   HashMap in java use it’s inner class Node<K,V> for storing mappings. HashMap works on hashing algorithm and uses hashCode() and equals() method on key for get and put operations. HashMap use singly linked list to store elements, these are called bins or buckets. When we call put method, hashCode of key is used to determine the bucket that will be used to store the mapping. Once bucket is identified, hashCode is used to check if there is already a key with same hashCode or not. If there is an existing key with same hashCode, then equals() method is used on key. If equals returns true, then value is overwritten, otherwise a new mapping is made to this singly linked list bucket. If there is no key with same hashCode then mapping is inserted into the bucket. For HashMap get operation, again key hashCode is used to determine the bucket to look for the value. After bucket is identified, entries are traversed to find out the Entry using hashCode and equals method. If match is found, value is returned otherwise null is returned. There are much more things involved such as hashing algorithm to get the bucket for the key, rehashing of mappings etc. But for our working, just remember that HashMap operations work on Key and good implementation of hashCode and equals method is required to avoid unwanted behaviour. Below image shows the explanation of get and put operations.
 
 12. **What are the differences between fail-fast and fail-safe iterators?**
-13. What is multithreading in Java?
-14. What are the different ways to create a thread in Java?
-15. What is synchronization in Java?
-16. What is a deadlock in Java?
-17. What are thread-safe collections in Java?
-18. What are threads, and how are they different from processes?
-19. Explain synchronized, volatile, wait(), notify(), and notifyAll().
-20. What are thread pools, and how do you create them using the ExecutorService?
+
+   - **Fail-Fast** iterators are those who iterates over the main collection instead of a copy collection. They consumes less memory space because they do not need to create a copy of collection. In these iterators if you modify the main collection (i.e. add, remove, or sort elements) it will throw an `ConcurrentModificationException` and abort the operation as soon as they get this exception.
+      **Example :** ArrayList, List, Map etc. (Collection provided by `java.util.Collection.*` package are all Fail-Fast).
+   - **Fail-Safe** iterators ar e those who iterates over the clone/copy of the collection instead of main collection. They consumes more memory space as they have to create a copy of collection. These type of iterators try to avoid any kind of failure and they do not throw any exception even if the main collection is modified.
+      **Example :** copyOnWriteArrayList, copyOnWriteArraySet (Collections provides by `java.util.Concurrent.*` packages are all Fail-Safe).
+   - **NOTE :** 
+      1. If we remove/add the element using the remove() or add() of iterator instead of collection, then in that case no exception will opccur. It is because the remove/add methods of iterators call the remove/add method of collection internally, and also it reasigns the expectedModCount to new modCount value.
+      2. There is no such thing as Fail-Safe iterator in java documentation instead of this it is k/a `Non-Fail-Fast` iterators.
+      3. **Fail-Safe** will not reflect the latest state of the collection.
+
+
+13. **What is multithreading in Java?**
+
+   - Multithreading in java is an act of executing a processes using virtual processing entities independent of each other. These entities are k/a `Threads.` Running multiple threads concurrently is `multithreading.`
+
+14. **What are the different ways to create a thread in Java?**
+
+   - There are two ways to create a thread in java :
+      1. `By extending Thread class :` First create a class that extends Thread and overrides the run() method. Now thread can be created by creating the object of our newly created class and calling the run() method.
+      2. `By implenting Runnable interface :` Thread class must implement the runnable interface and the thread class must override the run() method.
+
+
+15. **What is synchronization in Java?**
+
+   - Synchronization in java is the capability to control access of multiple threads over a shared resources. Synchronization allows only one thread at a particular time to complete a given task entirely. Synchronization saves the systems to approach race condition.
+   - In simple words, Synchronization is a way to ensure that only one thread can access a shared resource at a time.
+   - We can achieve thread synchronization in java by using `synchronized` keyword and :
+      1. `By Using Synchronized Method :` an method is synchronized using synchronized keyword.
+         ```java
+         public class Counter { 
+            private static int count = 0; 
+            public static synchronized void increment() {
+                count++; 
+            } 
+            public static int getCount() { 
+               return count; 
+            } 
+         }
+         ```
+      2. `By Using Synchronized Block :` an code block synchronized inside a method.
+         ```java
+         class Table{      
+            void printTable(int n){    
+               synchronized(this){//synchronized block    
+                  for(int i=1;i<=5;i++){    
+                     System.out.println(n*i);    
+                     try{    
+                     Thread.sleep(400);    
+                     }catch(Exception e){System.out.println(e);}    
+                  }    
+               }    
+            }//end of the method    
+         }    
+         ```
+      3. `By Using Static Synchronization :` 
+         ```java
+         public class GirlFriend {
+            public static synchronized void sing() {
+               try {
+                     for (int i = 1; i <= 10; ++i) {
+                        System.out.println("lullaby");
+                        Thread.sleep(100);
+                     }
+               } catch (Exception e) {
+               }
+            }
+            }
+
+            public static synchronized void count() {
+               try {
+                     for (int i = 1; i <= 10; ++i) {
+                        System.out.println(i);
+                        Thread.sleep(100);
+                     }
+               } catch (Exception e) {
+               }
+            }
+         }
+         ```
+
+   - _In summary, static synchronization is used to synchronize access to static methods, which are methods that belong to a class rather than an instance of the class. It ensures that only one thread can execute a static synchronized method at a time, regardless of the objects involved. This is different from synchronized methods or synchronized blocks, which lock on the instance of the class or a specific object, respectively._
+
+16. **What is a deadlock in Java?**
+
+   - Deadlock is a situation when two or more computer programs/threads are sharing the same resources and wait for each other to release the lock from the resource and due to this the programs/threads block each other and this situation or blockage of threads for indefinite time period is k/a Deadlock.
+
+17. **What are thread-safe collections in Java?**
+
+   - Collections those are designed to use by multiple threads without using external synchronization are thread-safe collections.
+   - List of all the by default thread-safe collections : 
+      1. `ConcurrentHashMap:` This is a thread-safe version of the HashMap class. It uses a lock striping mechanism to improve performance and scalability.
+      2. `CopyOnWriteArrayList:` This is a thread-safe version of the ArrayList class. It creates a new array for each modification, ensuring that iterators do not throw ConcurrentModificationException.
+      3. `CopyOnWriteArraySet:` This is a thread-safe version of the HashSet class. It uses the same copy-on-write mechanism as CopyOnWriteArrayList to ensure thread safety.
+      4. `ConcurrentLinkedQueue:` This is a thread-safe version of the Queue interface. It uses a compare-and-swap mechanism to ensure that operations are atomic and do not throw ConcurrentModificationException.
+      5. `ConcurrentSkipListMap:` This is a thread-safe version of the Map interface. It uses a compare-and-swap mechanism to ensure that operations are atomic and do not throw ConcurrentModificationException.
+      6. `ConcurrentSkipListSet:` This is a thread-safe version of the Set interface. It uses a compare-and-swap mechanism to ensure that operations are atomic and do not throw ConcurrentModificationException.
+      7. `Vector:` This is a legacy thread-safe collection that is synchronized at the object level. It is less efficient than other thread-safe collections due to the overhead of synchronization.
+      8. `Hashtable:` This is another legacy thread-safe collection that is synchronized at the object level. It is less efficient than other thread-safe collections due to the overhead of synchronization.
+
+18. **What are threads, and how are they different from processes?**
+
+   - Process is execution of a program with its own memory space and address and managed by operating system.
+   - Thread is the part of process every process has at least one thread present and that thread share the same memory of the process. Threads are lightweight processes(i.e. Process divided in multiple sub process/thread) and threads can be ,managed indivisually by the scheduler. 
+   - Creating a new thread requires fewer resources than creating a process.
+
+
+19. **Explain synchronized, volatile, wait(), notify(), and notifyAll().**
+
+   - `synchronized :` 
+      - **Purpose :** Ensures only one thread executes the block of code at a time.
+      - **Usage :** used with `synchronized` keyword to lock an object and ensure thread safety.
+      - **Example :**
+         ```java
+         public class Girlfriend{
+            public synchronized void sing(){
+               // code to be executed
+            }
+         }
+         ```
+   - `volatile :`
+      - **Purpose :** Ensures that changes to a variable are immediately visible to all threads.
+      - **Usage :** used with `volatile` keyword to declare a variable that should be updated immediately.
+      - **Example :**
+         ```java
+         public class Employee{
+            public volatile int count = 0;
+            public void incrementCount(){
+               count++;
+            }
+         }
+         ```
+   - `wait() :`
+      - **Purpose :** Cause a thread to wait until another thread notifies it.
+      - **Usage :** used to pause a thread until specific condition is met.
+      - **Example :**
+         ```java
+         public class PrintDemo{
+            private final Object lock = new Object();
+            public void printCount(){
+               // defining a synchronized block
+               synchronized(lock){
+                  for(int i=0; i<5; i++>){
+                     System.out.println("Counter :"+i);
+                     try{
+                        lock.wait(); // invoked the wait method to make lock thread wait until another thread notifies.
+                     }catch(InterruptedException e){
+                        System.out.println("Thread Interrupted.");
+                     }
+                  }
+               }
+            }
+         }
+         ```
+   - `notify() :`
+      - **Purpose :** Wakes up a thread that is waiting on a specific object.
+      - **Usage :** Used to notify a thread that is waiting on a specific object.
+      - **Example :**
+         ```java
+         public class PrintDemo{
+            private final Object lock = new Object();
+            public void printCount(){
+               // defining a synchronized block
+               synchronized(lock){
+                  for(int i=0; i<5; i++>){
+                     System.out.println("Counter :"+i);
+                     try{
+                        lock.notify(); // invoked the notify method to make waiting thread continue its task.
+                     }catch(InterruptedException e){
+                        System.out.println("Thread Interrupted.");
+                     }
+                  }
+               }
+            }
+         }
+         ```
+   - `notifyAll() :`
+      - **Purpose :** Wakes up all the threads that are waiting on a specific object.
+      - **Usage :** Used to notify all the threads waiting on a specific object.
+      - **Example :**
+         ```java
+         public class PrintDemo{
+            private final Object lock = new Object();
+            public void printCount(){
+               // defining a synchronized block
+               synchronized(lock){
+                  for(int i=0; i<5; i++>){
+                     System.out.println("Counter :"+i);
+                     try{
+                        lock.notifyAll(); // invoked the notifyAll method to make all the lock threads continue their task.
+                     }catch(InterruptedException e){
+                        System.out.println("Thread Interrupted.");
+                     }
+                  }
+               }
+            }
+         }
+         ```
+   - *These concepts are important for ensuring thread safety and synchronization in java.*
+
+      
+
+20. **What are thread pools, and how do you create them using the ExecutorService?**
+
+   - 
 21. What are checked and unchecked exceptions?
 22. How does the try-catch-finally block work?
 23. What is the difference between throw and throws?

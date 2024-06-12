@@ -347,10 +347,234 @@
 
 20. **What are thread pools, and how do you create them using the ExecutorService?**
 
-   - 
-21. What are checked and unchecked exceptions?
-22. How does the try-catch-finally block work?
-23. What is the difference between throw and throws?
+   - A thread pool is a collection of thread that can be used to perform a set of task concurrently. For this we have an Executor Framework provided by java in the `java.util.concurrent.*` package ; inside this package their is an `ExecutorService` interface that defines a set of methods fo rmanaging the lifecycle of threads in a thread pool.
+   - By using ExecutorService, we can create, execute, and manage threads without having to manage their lifecycle manually. `java.util.concurrent.` package provides us two main Classes to manage thread pool `ExecutorService` and `Executors`.
+   - `Executors` class provides lots of factory methods that can create different types of Executors. Some of the most commonly used Executors are :
+      1. `newSingleThreadExecutor() :` The newSingleThreadExecutor() method creates an Executor that uses a single worker thread to execute tasks. This type of Executor is useful when we want to ensure that tasks are executed in the order in which they are submitted.
+      ```java
+         ExecutorService executor = Executors.newSingleThreadExecutor();
+         executor.submit(() -> {
+            System.out.println("Task 1");
+         });
+         executor.submit(() -> {
+            System.out.println("Task 2");
+         });
+         executor.shutdown();
+      ```
+      ```html
+      Task 1
+      Task 2
+      ```
+
+      2. `newFixedThreadPoolExecutor() :` The newFixedThreadPool() method creates an Executor that uses a fixed number of worker threads to execute tasks. This type of Executor is useful when we want to limit the number of threads that are used to execute tasks.
+      ```java
+      ExecutorService executor = Executors.newFixedThreadPool(3);
+      for (int i = 0; i < 5; i++) {
+         executor.submit(() -> {
+            System.out.println("Task " + Thread.currentThread().getName());
+         });
+      }
+      executor.shutdown();
+      ```
+      ``` html
+      Task pool-1-thread-2
+      Task pool-1-thread-3
+      Task pool-1-thread-1
+      Task pool-1-thread-3
+      Task pool-1-thread-1
+      ```
+      - When you submit a task to a fixed-size thread pool, and all threads are busy executing other tasks, the task is added to the queue of pending tasks. The pending tasks will wait in the queue until a thread becomes available to execute them. 
+      - If the queue becomes full and there are no available threads to execute tasks, the Executor will reject the task submission with a RejectedExecutionException. The rejection policy can be configured to throw an exception, block the calling thread, or discard the task, depending on the implementation of the Executor.
+      
+      3. `newCachedThreadPool() :` This type of thread pool is suitable for executing short-lived asynchronous tasks that do not have a fixed rate of arrival. It is also useful when the number of threads needed to handle the workload is not known in advance, as the thread pool will dynamically adjust the number of threads to handle the workload.
+
+      ```java
+      ExecutorService executor = Executors.newCachedThreadPool();
+      for (int i = 0; i < 5; i++) {
+         executor.submit(() -> {
+            System.out.println("Task " + Thread.currentThread().getName());
+         });
+      }
+      executor.shutdown();
+      ```
+      ```html
+      Task pool-1-thread-3
+      Task pool-1-thread-1
+      Task pool-1-thread-2
+      Task pool-1-thread-4
+      Task pool-1-thread-5
+      ```
+
+      - The CachedThreadPoolExecutor uses a keep-alive time to determine when to remove idle threads. If a thread is idle for the specified keep-alive time, it is removed from the thread pool.
+
+      4. `newScheduledThreadPool() :` This executor is used to schedule a task to run after a certain delay, or to run repeatedly at a fixed interval. This is useful for tasks that need to be run periodically or on a schedule.
+
+      ```java
+      ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
+      // Schedule a task to run after 3 seconds
+      executor.schedule(() -> System.out.println("Task executed after 3 seconds"), 3, TimeUnit.SECONDS);
+      // Schedule a task to run repeatedly every 1 second
+      executor.scheduleAtFixedRate(() -> System.out.println("Task executed every 1 second"), 0, 1, TimeUnit.SECONDS);
+      ```
+      ```html
+      Task executed every 1 second
+      Task executed every 1 second
+      Task executed every 1 second
+      Task executed after 3 seconds
+      Task executed every 1 second
+      Task executed every 1 second
+      Task executed every 1 second
+      Task executed every 1 second
+      Task executed every 1 second
+      Task executed every 1 second
+      Task executed every 1 second
+      Task executed every 1 second
+      Task executed every 1 second
+      Task executed every 1 second
+      Task executed every 1 second
+      .
+      .
+      . 
+      ```
+
+   - **newSingleThreadExecutor()** vs **newFixedThreadPool(1)**
+      Main difference between the two is the type of queue used. `newSingleThreadExecutor()` uses an unbounded queue, while `Executors.newFixedThreadPool(1)` uses a fixed-size queue. If the application submits many tasks to the thread pool, the unbounded queue of `newSingleThreadExecutor()` can lead to out-of-memory errors, while the fixed-size queue of `Executors.newFixedThreadPool(1)` prevents the number of queued tasks from exceeding a certain limit.
+   - **Future**
+      In cases where you don’t want to wait for the result to be available, you can use the `submit()` method of the `Executor` interface to submit the `Callable` and obtain a `Future` object that represents the result of the computation.
+
+      You can then use this `Future` object to check if the computation is complete or not using the `isDone()` method. If the computation is not complete, you can perform other tasks, and later retrieve the result of the computation using the `get()` method of the `Future` object.
+
+      If you don’t want to wait for the result, you can simply discard the `Future` object without calling the `get()` method.
+
+      ```java
+      import java.util.concurrent.*;
+      public class FutureExample {
+         public static void main(String[] args) throws Exception {
+            ExecutorService executor = Executors.newFixedThreadPool(2);
+            Future<Integer> future = executor.submit(new Callable<Integer>() {
+                  public Integer call() throws Exception {
+                     Thread.sleep(5000);
+                     return 42;
+                  }
+            });
+            System.out.println("Other tasks running...");
+            int result = future.get();
+            System.out.println("Computation result: " + result);
+            executor.shutdown();
+         }
+      }
+      ```
+
+   - **Cancelling a submitted Task**
+      The `Future` interface returned by the `submit()` method has a `cancel()` method that can be used to cancel a task.
+
+      ```java
+      ExecutorService executor = Executors.newSingleThreadExecutor();
+
+      Future<Integer> futureTask = executor.submit(() -> {
+         // Simulate a long-running task
+         Thread.sleep(5000);
+         return 42;
+      });
+
+      // Try to cancel the task after 2 seconds
+      boolean cancelled = futureTask.cancel(true);
+      if (cancelled) {
+         System.out.println("Task cancelled successfully.");
+      } else {
+         System.out.println("Task could not be cancelled.");
+      }
+
+      executor.shutdown();
+      ```
+      ```html
+      Task cancelled successfully.
+      ```
+
+      The `cancel()` method takes a *boolean* argument that specifies whether the task should be interrupted *if it has already started running*. If the task has *not started running*, it will simply be *removed from the Executor's task queue*.
+
+               
+21. **What are checked and unchecked exceptions?**
+
+   - **Checked Exceptions :**
+      1. Checked exceptions are exceptions that must be either handled or declared in a method's `throws` clause.
+      2. Checked Execptions are handled using `try-catch` block or by declaring them in a method's throws clause.
+      3. Chceked Exceptions are caught at compile time.
+      4. **Example :** IOException, FileNotFoundException, SQLException etc.
+
+   - **Unchecked Exceptions :**
+      1. Unchecked Exceptions are exceptions that are not checked by compiler and do not need to declared in method's throws clause.
+      2. Unchecked Exceptions are also handled using `try-catch` block but they do not need to be declared in a method's throws clause.
+      3. Unchecked Exception are caught by JVM at Runtime.
+      4. **Example :** ArithmeticException, ArrayIndexOutOfBoundsException, NullPointerException etc.
+   ```java 
+   // Checked Exception Example
+   public class CheckedException {
+      public void readFile() throws FileNotFoundException {
+         String fileName = "file does not exist";
+         File file = new File(fileName);
+         FileInputStream stream = new FileInputStream(file);
+      }
+   }
+
+   // Unchecked Exception Example
+   public class UncheckedException {
+      public void divide() {
+         int x = 0;
+         int y = 10;
+         int z = y / x;
+      }
+   }
+   ```
+   **Note :** Checked exceptions are typically used to handle logical errors in the program, while unchecked exceptions are used to handle runtime errors that are often caused by programming errors.
+
+
+22. **How does the try-catch-finally block work?**
+
+   - **try block :** The `try` block contains the code that may thorw and exception and if an exception occurs the rest of the try block is skipped and the control transfers to the attched `catch` block. In case no Execption is thrown `catch` block is skipped and the if there is any `finally` block attached the control will be transfered to that block.
+   - **catch() block :** The `catch` block is used to handle the exception that might be thrown in the `try` block. cathc block takes the name of Exception it can handle as the parmeter and then if an exception occurs and matched the exceptions present in catch block parameter then the catch block is executed. In case the Exception can not be handled by the catch block, the default exception handling mechanism is invoked, and the program terminates abnormally.
+   - **finally block :** The `finally` block is used to execute important code, such as closing connections or resources, no matter if the exception occurs or not. The finally block is always executed, whether an execption is handled or not; unless the program exits abruptly(e.g. by calling `System.exit()` or due to a fatal error). If an exception occur in `try` block and is handled by `catch` block then the `finally` block gets executed after the catch block.
+   
+   ```java
+   try {
+    // code that might throw an exception
+    int result = 10 / 0;
+      System.out.println("Inside try block");
+   } catch (ArithmeticException e) {
+      System.out.println("Exception caught in catch block");
+   } finally {
+      System.out.println("finally block executed");
+   }
+   System.out.println("Outside try-catch-finally clause");
+   ```
+   
+   
+23. **What is the difference between throw and throws?**
+
+   - The `throw` keyword is used inside a method; and `throws` keyword is used in the method signature. 
+   - The `throw` keyword throws an exception explicitly but the `throws` keyword decalres that the method might throw an exception.
+   - `throw` keyword throws and instance of Exception class but `throws` define that the method will throw which of the exception class.
+   - **Example :** 
+      1. **throw :**
+         ```java
+         try {
+         // code that might throw an exception
+         int result = 10 / 0;
+         throw new ArithmeticException();
+         } catch (ArithmeticException e) {
+            System.out.println("Exception caught in catch block");
+         }
+         ```
+      2. **throws :**
+         ```java
+         public void withdraw(double amount) throws InsufficientBalanceException {
+            if (balance < withdrawAmount) {
+               throw new InsufficientBalanceException("You have insufficient balance");
+            }
+         }
+         ```
+
+
 24. Explain the Java memory model.
 25. What is garbage collection, and how does it work?
 26. What are strong, weak, soft, and phantom references?

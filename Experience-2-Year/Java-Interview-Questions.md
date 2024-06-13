@@ -780,7 +780,8 @@
 
 
 
-30. What are the Singleton, Factory, Builder, and Observer design patterns?
+30. **What are the Singleton, Factory, Builder, and Observer design patterns?**
+   - 
 31. When would you use Dependency Injection?
 32. Explain the JVM architecture.
 33. What are the different types of class loaders?

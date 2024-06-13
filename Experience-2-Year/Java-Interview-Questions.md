@@ -708,37 +708,78 @@
 29. **How do Optional and the new date/time API work in Java 8?**
    - **Optional Class:**
       Optional class is a container object used to contain non-null values. it is primarily intended to represent the absence and presence of a value and to avoid `NullPointerException`.
-   - **Key Methods Of Optional:**
-      1. **Creating an Optional:**
-         - `Optional.of(value)`: Creates an Optional with a non-null value.
-         - `Optional.ofNullable(value)`: Creates an Optional that may contain a null value.
-         - `Optional.empty()`: Creates an empty Optional.
-         - ```java
-            Optional<String> nonEmptyOptional = Optional.of("Hello");
-            Optional<String> nullableOptional = Optional.ofNullable(null);
-            Optional<String> emptyOptional = Optional.empty();
-            ```
-      2. **Checking For Value Presence:**
-         - `isPresent()`: Returns true if the value is present.
-         - `ifPresent(Consumer<? super T> consumer)`: Executes the given consumer if a value is present.
-         - ```java
-            if (nonEmptyOptional.isPresent()) {
-               System.out.println(nonEmptyOptional.get());
-            }
+     - **Key Methods Of Optional:**
+        1. **Creating an Optional:**
+           - `Optional.of(value)`: Creates an Optional with a non-null value.
+           - `Optional.ofNullable(value)`: Creates an Optional that may contain a null value.
+           - `Optional.empty()`: Creates an empty Optional.
+           - ```java
+              Optional<String> nonEmptyOptional = Optional.of("Hello");
+              Optional<String> nullableOptional = Optional.ofNullable(null);
+              Optional<String> emptyOptional = Optional.empty();
+              ```
+        2. **Checking For Value Presence:**
+           - `isPresent()`: Returns true if the value is present.
+           - `ifPresent(Consumer<? super T> consumer)`: Executes the given consumer if a value is present.
+           - ```java
+              if (nonEmptyOptional.isPresent()) {
+                 System.out.println(nonEmptyOptional.get());
+              }
 
-            nullableOptional.ifPresent(value -> System.out.println(value));
-            ```
+              nullableOptional.ifPresent(value -> System.out.println(value));
+              ```
 
-      3. **Retrieving the Value:**
-         - `get()`: Returns the value if present, otherwise throws NoSuchElementException.
-         - `orElse(T other)`: Returns the value if present, otherwise returns other.
-         - `orElseGet(Supplier<? extends T> other)`: Returns the value if present, otherwise invokes the supplier and returns its result.
-         - `orElseThrow(Supplier<? extends X> exceptionSupplier)`: Returns the value if present, otherwise throws an exception created by the supplier.
-         - ```java
-            String value = nullableOptional.orElse("default");
-            String valueFromSupplier = nullableOptional.orElseGet(() -> "default from supplier");
-            String valueOrException = nullableOptional.orElseThrow(() -> new IllegalArgumentException("No value present"));
-            ```
+        3. **Retrieving the Value:**
+           - `get()`: Returns the value if present, otherwise throws NoSuchElementException.
+           - `orElse(T other)`: Returns the value if present, otherwise returns other.
+           - `orElseGet(Supplier<? extends T> other)`: Returns the value if present, otherwise invokes the supplier and returns its result.
+           - `orElseThrow(Supplier<? extends X> exceptionSupplier)`: Returns the value if present, otherwise throws an exception created by the supplier.
+           - ```java
+              String value = nullableOptional.orElse("default");
+              String valueFromSupplier = nullableOptional.orElseGet(() -> "default from supplier");
+              String valueOrException = nullableOptional.orElseThrow(() -> new IllegalArgumentException("No value present"));
+              ```
+   - **New Date/Time API :**  
+      The new date/time API in Java 8, found in the java.time package, offers a comprehensive and consistent approach to handling dates and times. It is designed to overcome the limitations of the old java.util.Date and java.util.Calendar classes.
+
+      - **Key Classes in java.time:**
+         1. **LocalDate, LocalTime, LocalDateTime:**
+            - `LocalDate`: Represents a date (year, month, day) without time and timezone.
+            - `LocalTime`: Represents a time (hours, minutes, seconds, nanoseconds) without date and timezone.
+            - `LocalDateTime`: Represents both date and time without timezone.
+            - ```java
+               LocalDate date = LocalDate.now();
+               LocalTime time = LocalTime.now();
+               LocalDateTime dateTime = LocalDateTime.now();
+
+               LocalDate specificDate = LocalDate.of(2024, 6, 13);
+               LocalTime specificTime = LocalTime.of(14, 30);
+               LocalDateTime specificDateTime = LocalDateTime.of(2024, 6, 13, 14, 30);
+               ```
+         2. **ZonedDateTime:**
+            - Represents a date and time with a timezone.
+            - ```java
+               ZonedDateTime zonedDateTime = ZonedDateTime.now();
+               ZonedDateTime specificZonedDateTime = ZonedDateTime.of(2024, 6, 13, 14, 30, 0, 0, ZoneId.of("UTC"));
+               ```
+         3. **Period and Duration:**
+            - `Period`: Represents a date-based amount of time (years, months, days).
+            - `Duration`: Represents a time-based amount of time (hours, minutes, seconds, nanoseconds).
+            - ```java
+               Period period = Period.ofDays(10);
+               Duration duration = Duration.ofHours(5);
+               ```
+         4. **Formatting and Parsing:**
+            - The DateTimeFormatter class is used to format and parse date-time objects.
+            - ```java
+               DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+               String formattedDateTime = specificDateTime.format(formatter);
+               LocalDateTime parsedDateTime = LocalDateTime.parse("13-06-2024 14:30", formatter);
+               ```
+         
+
+
+
 30. What are the Singleton, Factory, Builder, and Observer design patterns?
 31. When would you use Dependency Injection?
 32. Explain the JVM architecture.

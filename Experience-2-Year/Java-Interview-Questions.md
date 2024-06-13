@@ -577,13 +577,168 @@
 
 24. **Explain the Java memory model.**
 
-   - [Article](https://dip-mazumder.medium.com/java-memory-model-a-comprehensive-guide-ba9643b839e#:~:text=The%20Java%20Memory%20Model%20(JMM,framework%20for%20safe%20multi%2Dthreading.)
+   - Java Memory Model(JMM) supervise/control **how threads in java interact with memory**. It ensures that **changes made by one thread visible to all others, providing a framework for safe multi-threading**. It also ensures proper synchronization using constructs(a block of code that initializes) like `synchronized` **blocks**, `volatile`. **and memory barriers.** 
+   - JMM is responsible for preventing data races(i.e. threads accessing shared resource without suffiecient protection, leading to abnormal behaviour.) and ensures consistent behavior in multi-threaded Java program.
+
+   - JMM has two main parts :
+      1. # **THREAD STACK**
+         - Each thread running has it's own stack and is k/a thread stack.
+         - used to store Local varibales for primitive(int,long,double, etc.) types.
+         - These thread stacks are not visible to other threads even if they are running the same piece of code.
+         - they will create their own seperate copies of local variables for that code in their own thread stack.
+         # Creation of Thread Stack :
+         1. When thread is started, JRE creates a new empty thread stack for that thread.
+         2. When thread calls any `methodA()`, JRE pushes a new Frame(Stack Frame- Data Structure used to store state of the method being executred.) onto thread stack. This frame stores the call stack and local variables for the methodA().
+         3. When `method A()` call any other `method B()`,, JRE pushes another frame onto the thread stack to store the call stack and local varibales for the methodB().
+         4. When methodB() returns, JRE pops the frame for methodB() off the thread stack. When methodA() returns, JRE pops the frame of it off the thread stack.
+
+         # KEY FEATURES:
+         1. **Dynamic Growth and Shrinkage :** Stack Memory grows and shrinks as new method are called and returned respectively as their new stack frame is created and removed respectively.
+         2. **Limited Lifetime :** Varibales declared in the stack exists as long as the method that created them is running, once finish complete frace and local variable are deallocated.
+         3. **Automatic Allocation and Deallocation:** Stack memory is automaticall allocated when method is called and deallocated when method finishes executing.
+         4. **StackOverflowError :** if the stack becomes full due to excessive method calls(e.g. recursion without any base case), java throws `StackOverflowError`.
+         5. **FAST ACCESS :** Stack memory offers fast access compared to Heap Memory because of its working mechanism i.e. Last-In First-Out(LIFO).
+         6. **Thread Safety :** Each thread's, ,ethod and local variables are isolated with each other because they operates in their own stack.
+
+      2. **HEAP MEMORY**
+         - Heap is a separate meory area that contains all the objects created in a Java application, regardless of which thread created them.
+         - This includes objects of primitive types(e.g. Integer, Long). 
+         - Every object created is stored in heap, no matter if an object was created and assigned to a local variable or created as a member varible of another object.
+
+         # Key Features : 
+            1. **OutOfMemoryError :**
+               - When heap space is full and become insufficient to allocate new objects, java throws and *OutOfMemoryError.*
+               - Giving a real life example : loading a large dataset into memory or when there's a memory leak.
+               ```java
+               public class OutOfMemoryExample {
+                  public static void main(String[] args) {
+                     try {
+                           // Attempt to create a very large array to fill up heap space
+                           int[] bigArray = new int[Integer.MAX_VALUE];
+                     } catch (OutOfMemoryError e) {
+                           System.err.println("OutOfMemoryError: " + e.getMessage());
+                     }
+                  }
+               }
+               ```
+            2. **Heap Memory Access is Slower Than Stack Memory :**
+               - Heap Memory is slower because it involves dynamic memory allocation and deallocation manages by the Garbage Collector(GC).
+               - Stack Memory acces is faster because it simply involves pushing and popping elements from the stack.
+
+            3. **Heap Memory is not thread-safe :**
+               - Heap memory is not inherently thread-safe, meaning that when multiple threads access and modify shared objects in the heap concurrently, it can lead to data races and inconsistent states.
+               - Proper synchronization mechanisms like synchronized blocks, locks, or using thread-safe data structures from the java.util.concurrent package should be used to make heap-based data structures thread-safe.
+            4. Object and their Member Variables, Static class Variables all are stores on the heap and can be accessed by all other threads.
+               
    
-25. What is garbage collection, and how does it work?
-26. What are strong, weak, soft, and phantom references?
-27. Explain lambda expressions and functional interfaces in Java 8.
-28. What are streams in Java 8, and how do you use them?
-29. How do Optional and the new date/time API work in Java 8?
+25. **What is garbage collection, and how does it work?**
+   - Garbage Collection is a memory recovery feature built into programming language such as C# and Java. A GC enables programming language includes one or more garbage collectors (GC engines) that automatically free up memory space taht has been alloocated to objects no longer needed by the program. Garbage Collector are used to allocated space in the Heap memory dynamically. Garbage collectors helps prevent meory leak and ensure memory used by program remain efficient and organized.
+   - ### Working Of Garabage Collection :
+      1. **Reference Counting :** Each object is created in the program is assigned a reference(where the object is connected) count. whenever any refrence gets connected with the object reference count is increased by one and when reference is removed or goes out of scope the count is decreased by one. if the count reaches Zero, then the object is considered garbage, eligible for garbage collection and can be freed.
+      2. **Mark-and-Sweep Algorithm :** This algorithm works in two major phases-
+            **Marking :** The GC traverse through the graph of objects and mark each objects if they are reachable by the roots(thread, static fields, local variables, and CPU registers).
+            **Sweeping :** After marking each and every object, GC sweeps all the objects that are not marked reachable in the marking phase.
+      3. **Generational Garbage Collection :** Heap memory have two types of generational space, `Young Generation` to store newly created young objects and `Old(Tenured) Generation` to store objects surpassed their maximum survival cycle according to `-XX:MaxTenuring Threshold` and are considered as old objects.
+         `Young Generation` consists different spaces for objects; `Eden Space` to store fresh newly created objects, `Survivor 1` and `Survivor 2` to store objects survived when Eden Space gets full and `Minor GC` kicks in and collects the dead objects(objects unreachable) and move live objects(objects still reachable) in the survivor space and increase their survivor count by 1 and free up the Eden space to again store the newly created objects, again when it get full minor GC kicks in and collects all the dead objects from Eden Space and Survivor Space and Move the live objects from eden space and previously left objects in survivor space to another survivor space and increase their survivor count by 1 again and this process continues, when any objects reaches its `MaxTenuring Threshold` i.e. 6 and minor GC kicks in it complete its regular process and move objects to Old generation whose survivor count is equal to 6.
+         - Why this process of moving Old Generation important is to avoid `Full GC` because its an evil situation and because of Generational Collection we try to avoid this situation upto certain extent. Whenever Old Generation space gets full it requires full GC and full GC requires to stop the application further its process gets completed i.e. why minor GC running is more frequent than Full GC.
+      4. **Memory Compaction :** Memories are divided in fragments to and fragments gets utilised to store the object or resources in random fragments because of the fragmentation sometime even when there is free space we are not able to utilise it properly to avoid this situation we have a technique named as `Compaction ` i.e. the process of bringing all the occupied fragments together and leaving empty fragments together. 
+      After the Garbage Collection, Garbage Collectore compacts the memory by moving all the reachable objects to a contiguous block, freeing up memory space and reducing fragmentation.
+      5. **Object Identification :** Objects are identified as garbage when their refernce count becomes 0 and this happens when the object is no longer needed, becomes unreachable, or goes outof scope.
+      6. **Object Reclamation :** The garbage collector reclaims the memory space by occupied by the garbage objects by cleaning up the garbage objects and allocate the space for future object creation. This process ensures that the memory used by the program remains efficient and organized.
+
+
+26. **What are strong, weak, soft, and phantom references?**
+   - **Strong References :** These are the defualt references used to prevent garabage collection to clean the object from the memory. All other references allows the object to be garbage collected in different scenerios. `String str = "abc"` creates string reference to the String object.
+   - **Weak References :** These references do not prevent the object from being collected by the Garbage Collector as soon as the object becomes weakly reachable (only accessible by the weak references), it can be removed by the garabage collector from the memory. These refernces are commonly used for caching and canonicalizing mapping.
+   - **Soft References :** These references are similar to weak references but they are cleared less aggressively by the garabage collector. Objects with soft references are only clear when the JVM is running low on memory. Soft references are useful for imp-lementing memory-sensitive cahces.
+   - **Phantom References :** These are the weakest type of references and they do not prevent the object from being collected by the GC and also they do provide a way to access the object. Phantom references are enqueued with a ReferenceQueue after an object has been collected. they are useful for scheduling post-mortem cleanup actions and detecting when an object has been garbage collected.
+
+27. **Explain lambda expressions and functional interfaces in Java 8.**
+
+   - **Lambda Expression :** Lambda expression are the annonymous functions use to implement functional interfaces(interfaces with a single abstract method). Lambda expressions are used to reduce boilerplate code and make the code more concise and readable.
+      Lambda Expressions mainly concists of three parts :
+      - **Parameter List :** list of parameters that the lambda expressions accepts and are enclosed with parantheses '()'.
+      - **Arrow Operator :** An arrow operator ' -> ' to separate parameter list from the lambda body.
+      - **Lambda Body :** Lambda body is the code that is executed when the lambda expression is invoked. It Can be a single statement or a block of statements.
+   ```java
+   int square = (int x) -> x*x ;
+   ```
+
+   - **Functional Interfaces :** Functional interfaces only have a single abstract method. This means the interface implementation will only represent one behaviour. `Runnable` , `Callable` , `Comparator` , and `Function` are the example of functional interfaces.
+   ```java
+   @FunctionalInterface
+   public interface SquareRoot {
+      double findSquareRoot(int n);
+   }
+   ```
+
+28. **What are streams in Java 8, and how do you use them?**
+   - Stream is the concept introduced in java 8, provides a way to process collections of objects in a functional style and is a part of Java collection framework. They allow to process sequences of elements in a functional style, providing a powerful and efficient way to perform operations on collection of data.
+   - **Key Characteristics of Streams:**
+      1. **Sequence of Elements:** STream represents sequences of elements froma source(data whose stream is created) such as collection, an array, or an I/O channel.
+      2. **Functional in Nature:** Stream supports Functional-style operations, making extensive use of lambda expressions.
+      3. **Pipelined Processing:** Stream operations can be chained together to form a pipeline. Intermediate operations are lazy and are not executed until a terminal operation is invoked.
+      4. **Parallelizable:** Streams can be processed in parallel without having to explicitly manage thread creation and synchronization.
+   - **Types of Stream Operations:**
+      1. **Intermediate Operations:** These operations transform a stream into another stream and are lazy, meaning they are not executed until a terminal operation is called. Example include `map()`, `filter()`, `distinct()`, `sorted()`, and `limit()`.
+      2. **Terminal Opertaions:** These operations produce a result or side-effect and are executed once on the entire stream pipeline. Example include `forEach()`, `collect()`, `reduce()`, `count()`, and `anyMatch()`.
+   - ```java
+      import java.util.Arrays;
+      import java.util.List;
+      import java.util.stream.Collectors;
+
+      public class StreamExample {
+         public static void main(String[] args) {
+            List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "David", "Eve");
+
+            // Using stream to filter, map, and collect
+            List<String> filteredNames = names.stream()
+                                                .filter(name -> name.length() > 3)
+                                                .map(String::toUpperCase)
+                                                .sorted()
+                                                .collect(Collectors.toList());
+
+            // Printing the result
+            filteredNames.forEach(System.out::println);
+         }
+      }
+      // In this example, we filter the names with length greater than 3, convert them to uppercase, sort them, and then collect the result into a list which is printed out.
+      ```
+
+29. **How do Optional and the new date/time API work in Java 8?**
+   - **Optional Class:**
+      Optional class is a container object used to contain non-null values. it is primarily intended to represent the absence and presence of a value and to avoid `NullPointerException`.
+   - **Key Methods Of Optional:**
+      1. **Creating an Optional:**
+         - `Optional.of(value)`: Creates an Optional with a non-null value.
+         - `Optional.ofNullable(value)`: Creates an Optional that may contain a null value.
+         - `Optional.empty()`: Creates an empty Optional.
+         - ```java
+            Optional<String> nonEmptyOptional = Optional.of("Hello");
+            Optional<String> nullableOptional = Optional.ofNullable(null);
+            Optional<String> emptyOptional = Optional.empty();
+            ```
+      2. **Checking For Value Presence:**
+         - `isPresent()`: Returns true if the value is present.
+         - `ifPresent(Consumer<? super T> consumer)`: Executes the given consumer if a value is present.
+         - ```java
+            if (nonEmptyOptional.isPresent()) {
+               System.out.println(nonEmptyOptional.get());
+            }
+
+            nullableOptional.ifPresent(value -> System.out.println(value));
+            ```
+
+      3. **Retrieving the Value:**
+         - `get()`: Returns the value if present, otherwise throws NoSuchElementException.
+         - `orElse(T other)`: Returns the value if present, otherwise returns other.
+         - `orElseGet(Supplier<? extends T> other)`: Returns the value if present, otherwise invokes the supplier and returns its result.
+         - `orElseThrow(Supplier<? extends X> exceptionSupplier)`: Returns the value if present, otherwise throws an exception created by the supplier.
+         - ```java
+            String value = nullableOptional.orElse("default");
+            String valueFromSupplier = nullableOptional.orElseGet(() -> "default from supplier");
+            String valueOrException = nullableOptional.orElseThrow(() -> new IllegalArgumentException("No value present"));
+            ```
 30. What are the Singleton, Factory, Builder, and Observer design patterns?
 31. When would you use Dependency Injection?
 32. Explain the JVM architecture.

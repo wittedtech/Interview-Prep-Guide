@@ -1,3 +1,5 @@
+package String;
+
 class ReverseString{
     public static void main(String[] args) {
         String sentence = "The Quick Brown Fox Jump over the Cat";

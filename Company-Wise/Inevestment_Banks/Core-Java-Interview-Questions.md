@@ -1,0 +1,20 @@
+- How does substring () inside String works?
+- What is a classloader?
+- How is the creation of a String using new() different from that of a literal?
+- What is difference between Executor.submit () and Executer.execute() method?
+- What do you understand by Java Memory Model?
+- How to make a class Immutable? What purpose does it solve?
+- Can you use HashMap in the multi-threaded environment? What can be the problem?
+- Can you write a critical section code for the singleton?
+- What is Singleton? is it better to make the whole method synchronized or only the critical section synchronized?
+- How do you avoid deadlock in Java?
+- How can you avoid serialization in the child class if the base class is implementing the Serializable interface?
+- What is the ConcurrentHashMap in Java and do you implement it?
+- Explain the FailFast iterator and Fail Safe iterator along with examples for each.
+- What is the difference between Checked Exception and Unchecked Exception?
+- What is the difference between factory and abstract factory pattern?
+- What is marker interface?
+- When Finally block doesn't get executed?
+- How does Garbage collection in Java works?
+- Difference between ClassNotFound vs NoClassDefError?
+- How to break Singleton?

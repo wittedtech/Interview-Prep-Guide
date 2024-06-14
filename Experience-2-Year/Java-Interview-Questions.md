@@ -581,18 +581,18 @@
    - JMM is responsible for preventing data races(i.e. threads accessing shared resource without suffiecient protection, leading to abnormal behaviour.) and ensures consistent behavior in multi-threaded Java program.
 
    - JMM has two main parts :
-      1. # **THREAD STACK**
+      1. **THREAD STACK**
          - Each thread running has it's own stack and is k/a thread stack.
          - used to store Local varibales for primitive(int,long,double, etc.) types.
          - These thread stacks are not visible to other threads even if they are running the same piece of code.
          - they will create their own seperate copies of local variables for that code in their own thread stack.
-         # Creation of Thread Stack :
+         **Creation of Thread Stack :**
          1. When thread is started, JRE creates a new empty thread stack for that thread.
          2. When thread calls any `methodA()`, JRE pushes a new Frame(Stack Frame- Data Structure used to store state of the method being executred.) onto thread stack. This frame stores the call stack and local variables for the methodA().
          3. When `method A()` call any other `method B()`,, JRE pushes another frame onto the thread stack to store the call stack and local varibales for the methodB().
          4. When methodB() returns, JRE pops the frame for methodB() off the thread stack. When methodA() returns, JRE pops the frame of it off the thread stack.
 
-         # KEY FEATURES:
+          **KEY FEATURES:**
          1. **Dynamic Growth and Shrinkage :** Stack Memory grows and shrinks as new method are called and returned respectively as their new stack frame is created and removed respectively.
          2. **Limited Lifetime :** Varibales declared in the stack exists as long as the method that created them is running, once finish complete frace and local variable are deallocated.
          3. **Automatic Allocation and Deallocation:** Stack memory is automaticall allocated when method is called and deallocated when method finishes executing.
@@ -605,7 +605,7 @@
          - This includes objects of primitive types(e.g. Integer, Long). 
          - Every object created is stored in heap, no matter if an object was created and assigned to a local variable or created as a member varible of another object.
 
-         # Key Features : 
+          **Key Features :** 
             1. **OutOfMemoryError :**
                - When heap space is full and become insufficient to allocate new objects, java throws and *OutOfMemoryError.*
                - Giving a real life example : loading a large dataset into memory or when there's a memory leak.
@@ -633,7 +633,7 @@
    
 25. **What is garbage collection, and how does it work?**
    - Garbage Collection is a memory recovery feature built into programming language such as C# and Java. A GC enables programming language includes one or more garbage collectors (GC engines) that automatically free up memory space taht has been alloocated to objects no longer needed by the program. Garbage Collector are used to allocated space in the Heap memory dynamically. Garbage collectors helps prevent meory leak and ensure memory used by program remain efficient and organized.
-   - ### Working Of Garabage Collection :
+   - **Working Of Garabage Collection :**
       1. **Reference Counting :** Each object is created in the program is assigned a reference(where the object is connected) count. whenever any refrence gets connected with the object reference count is increased by one and when reference is removed or goes out of scope the count is decreased by one. if the count reaches Zero, then the object is considered garbage, eligible for garbage collection and can be freed.
       2. **Mark-and-Sweep Algorithm :** This algorithm works in two major phases-
             **Marking :** The GC traverse through the graph of objects and mark each objects if they are reachable by the roots(thread, static fields, local variables, and CPU registers).
@@ -781,14 +781,433 @@
 
 
 30. **What are the Singleton, Factory, Builder, and Observer design patterns?**
-   - 
-31. When would you use Dependency Injection?
-32. Explain the JVM architecture.
-33. What are the different types of class loaders?
-34. How does the Just-In-Time (JIT) compiler work?
-35. What are the differences between Java IO and NIO?
-36. Explain the use of buffers and channels in NIO.
-37. How do you implement serialization and deserialization in Java?
-38. What are the different types of references in Java?
-39. How does the Java Stream API work, and what are its benefits?
-40. What is the difference between an interface and an abstract class?
+   - **Brief :**
+      1. **Singleton pattern:** This pattern ensures that only one instance of a class is created and provides a global point of access to that instance.
+         - **Key Characteristics:**  
+            `Single Instance:` Only one instance of the class is created.  
+            `Global Access:` The instance can be accessed globally.
+      2. **Factory pattern:** This pattern provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created. In Simple terms instead of using new keyword to create class, client will use method of Factory class and define which class object is required and the Factory Class will create that Object and return the object to the client.
+         - **Key Characteristics:**  
+            `Encapsulation of Object Creation:` The creation logic is encapsulated in the factory.  
+            `Abstraction`: Clients use the factory instead of the new keyword.
+      3. **Observer pattern:** This pattern defines a one-to-many dependency between objects, so that when one object changes state, all its dependents are notified and updated automatically.
+         - **Key Characteristics:**  
+            `Loose Coupling:` Observers are loosely coupled to the subject.  
+            `Dynamic Relationships:` Observers can be added or removed at runtime.
+      4. **Builder Pattern:** The Builder pattern separates the construction of a complex object from its representation. This pattern is particularly useful when an object has many optional parameters.
+         - **Key Characteristics:**  
+            `Step-by-Step Construction:` Allows incremental construction of the object.  
+            `Immutability:` The built object is often immutable.
+   ---
+   - **For Detail Explanation of System Design Patterns do checkout below mentioned resources :**
+      1. [System Design Pattern]() by @wittedtech
+      2. [System Design Primer](https://github.com/donnemartin/system-design-primer) by @donnemartin
+   - **For Detailed Programming Examples do checkout one of my another repo :**
+      [System Design Pattern Examples Using Java]()
+   ---
+31. **When would you use Dependency Injection?**
+   - Dependency Injection is design pattern used to implement `Inversion of Control (IoC)` for resolving dependencies in an application. In Java Dependency Injection is commonly used to create loosely coupled code, configuration management, and for code reusability as well. @Autowired in springboot is the best example of Dependency Injection because it adds the depency via loosely couples object of the component/bean.
+
+32. **Explain the JVM architecture.**
+   - JVM is an computing machine that enables a computer to run Java programs and programs written on other language that are compiled to java bytecode.The JVM architecture is designed to be platform-independent and consists of several components that work together to execute Java applications.
+   - **Components of JVM Architecture:**
+      1. **Class Loader Subsystem:**  
+            **Loading:** Loads the class files (.class) into the JVM.  
+            **Linking:** Includes verification, preparation, and (optionally) resolution. Verification ensures that the loaded classes comply with the JVM specifications and do not violate security constraints. Preparation allocates memory for class variables and initializes them to default values. Resolution involves replacing symbolic references with direct references.  
+            **Initialization:** Initializes static variables and executes static blocks.  
+      
+      2. **Runtime Data Areas:**  
+            **Method Area:** Stores class-level data such as class structure, method data, and runtime constant pool. It is shared among all threads.  
+            **Heap:** The runtime data area from which memory for all class instances and arrays is allocated. The heap is also shared among all threads and is the primary area managed by the garbage collector.  
+            **Java Stacks:** Each thread has its own Java stack which stores frames. Each frame corresponds to a method call and holds local variables, partial results, and a reference to the constant pool of the method’s class.  
+            **PC (Program Counter) Register:** Each thread has its own PC register that contains the address of the currently executing JVM instruction.  
+            **Native Method Stacks:** These stacks are used for native methods written in languages other than Java (e.g., C/C++) and typically interact with the native operating system.  
+
+      3. **Execution Engine:**  
+            **Interpreter:** Reads and executes bytecode instructions one by one. It is simple but can be slow because it interprets bytecode directly.  
+            **Just-In-Time (JIT) Compiler:** Improves performance by compiling bytecode into native machine code at runtime. Once a method is compiled, the JVM calls the compiled code directly instead of interpreting it.  
+            **Garbage Collector:** Manages the automatic memory management process. It identifies and discards objects that are no longer in use to reclaim memory. Various algorithms like Mark-and-Sweep, Generational GC, and G1 GC are used to perform garbage collection.  
+
+      4. **Native Interface:**  
+            **Java Native Interface (JNI):** Allows Java code running in the JVM to call and be called by native applications and libraries written in other languages like C and C++.  
+            **Native Method Libraries:** Provides an interface for Java code to interact with native code. It consists of native methods that the JVM can use to perform specific tasks that are typically platform-specific.  
+   - **Detailed Flow of Execution**  
+         **Class Loading:** The class loader subsystem loads class files into the JVM. It starts with the bootstrap class loader, followed by the extension class loader, and finally the application class loader.  
+         **Bytecode Verification:** The bytecode verifier checks the loaded class files for security and correctness. It ensures that the code follows Java language rules and doesn’t perform illegal operations.  
+         **Memory Allocation:** The JVM allocates memory for class variables in the method area and for objects in the heap. Each thread gets its own stack where method calls are recorded.  
+         **Execution:** The execution engine takes bytecode and executes it. The interpreter reads and executes each instruction sequentially, while the JIT compiler compiles frequently executed bytecode into native code for faster execution.  
+         **Garbage Collection:** Periodically, the garbage collector runs to free up memory by removing objects that are no longer reachable from any live thread or static fields.  
+
+   - **Conclusion :**
+      The JVM architecture is a sophisticated and robust system designed to run Java applications efficiently and securely. It abstracts the underlying hardware and operating system details, providing a platform-independent execution environment. The combination of the class loader subsystem, runtime data areas, execution engine, and native interface ensures that Java applications are executed smoothly, with automatic memory management and the ability to integrate with native code when necessary.  
+
+33. **What are the different types of class loaders?**
+   - Class Loader in java is responsible for loading class files in jvm during execution and follow a hierarchical delegation model where each class loader has a parent, and the loading request is first delegated to the parent class loader before attempting to load the class itself. There are several types of class loaders, each serving a specific purpose.
+   - **Types of Class Loaders**
+      1. **Bootstrap Class Loader:**
+            **Purpose:** This is the root class loader and the parent of all other class loaders. It loads the core Java libraries located in the `JAVA_HOME/lib` directory, such as `rt.jar` which contains the standard Java classes (`java.lang`, `java.util`, etc.).
+            **Implementation:** It is implemented in native code (typically in C or C++) and is part of the JVM itself.
+            **Visibility:** It is not visible to Java applications and cannot be directly referenced or manipulated by Java code.
+      2. **Extension Class Loader (Platform Class Loader in JDK 9 and later):**
+            **Purpose:** It loads classes from the extensions directories, typically located in `JAVA_HOME/lib/ext` or any other directory specified by the `java.ext.dirs` system property.
+            **Implementation:** It is implemented in Java and extends the `ClassLoader` class.
+            **Hierarchy:** It is a child of the bootstrap class loader and a parent to the system/application class loader.
+      3. **System/Application Class Loader:**
+            **Purpose:** It loads classes from the system classpath, which includes paths specified by the `CLASSPATH` environment variable, `java.class.path` system property, or `-cp` command-line option.
+            **Implementation:** It is also implemented in Java and extends the `ClassLoader` class.
+            **Hierarchy:** It is a child of the extension class loader.
+      4. **Custom Class Loaders**
+            In addition to these standard class loaders, developers can create custom class loaders by extending the `ClassLoader` class. Custom class loaders are typically used for:
+            **Loading Classes from Non-Standard Sources:** Such as over a network, from a database, or from dynamically generated code.
+            **Implementing Specific Class Loading Policies:** Such as reloading classes or loading classes in a specific order.
+            **Isolating Classes:** For instance, in application servers or plugin systems where different applications or plugins need to use different versions of the same class.
+
+            **Example:**
+            - **Loading Classes From Specified Directory :**
+               ```java
+               // classes from the specified directory
+               import java.io.*;
+               import java.nio.file.*;
+
+               public class CustomClassLoader extends ClassLoader {
+                  private final Path classesDir;
+
+                  public CustomClassLoader(Path classesDir) {
+                     this.classesDir = classesDir;
+                  }
+
+                  @Override
+                  protected Class<?> findClass(String name) throws ClassNotFoundException {
+                     Path classFile = classesDir.resolve(name.replace('.', '/') + ".class");
+                     if (Files.exists(classFile)) {
+                           try {
+                              byte[] classBytes = Files.readAllBytes(classFile);
+                              return defineClass(name, classBytes, 0, classBytes.length);
+                           } catch (IOException e) {
+                              throw new ClassNotFoundException("Could not load class " + name, e);
+                           }
+                     }
+                     return super.findClass(name);
+                  }
+               }
+               ```
+            - **Using the Custom Class Loader**
+               ```java
+               public class CustomClassLoaderTest {
+                  public static void main(String[] args) {
+                     try {
+                           Path classesDir = Paths.get("path/to/classes");
+                           CustomClassLoader customClassLoader = new CustomClassLoader(classesDir);
+                           Class<?> clazz = customClassLoader.loadClass("com.example.MyClass");
+                           Object instance = clazz.newInstance();
+                           System.out.println("Class loaded: " + clazz.getName());
+                     } catch (Exception e) {
+                           e.printStackTrace();
+                     }
+                  }
+               }
+               ```
+
+34. **How does the Just-In-Time (JIT) compiler work?**
+   - **JIT** is a part of JVM.
+   - It compiles bytecodes to machine code at runtime.
+   - Very frequently used methods are compiled once and kept into memory.
+   - JIT performs some optimization on code.
+
+35. **What are the differences between Java IO and NIO?**
+   - Java IO(Input/Output) and Java NIO(New Input/Output) are two distinct APIs provided by java for handling input and output. Each API has its own set of classes and methods designed to meet different needs and use cases.
+   - **Java IO(Tradition IO)**
+      1. **Stream Oriented**  
+         Java IO operates in a stream-oriented fashion. This means it reads and writes data one byte or character at a time, using `InputStream` and `OutputStream` for byte streams and `Reader` and `Writer` for character streams.
+      2. **Blocking IO:**
+         Java IO is blocking. When a thread performs a read or write operation, it is blocked until the data is available or the operation is complete. This can lead to inefficiencies, especially in high-concurrency applications.
+      3. **No Direct Buffer Management:**
+         Java IO does not provide direct control over buffers. Data is generally read into and written from arrays, and the JVM manages the buffers internally.
+      4. **File Handling:**
+         File handling in Java IO is done through the File class, which provides methods to create, delete, and inspect files and directories. However, it doesn't provide many advanced file operations.
+      5. **Less Complex:**
+         The traditional IO API is relatively simpler and easier to use for straightforward file and stream operations, making it suitable for basic tasks.
+   
+   - **Java NIO (New IO)**
+      1. **Buffer Oriented:**
+         Java NIO operates in a buffer-oriented manner. Data is read into a buffer from which it can be processed. Buffers provide a more flexible and efficient way to handle data.
+      2. **Non-Blocking IO:**
+         Java NIO supports non-blocking IO. This means threads can initiate an IO operation and continue executing other tasks while the IO operation completes in the background. This is particularly useful for building scalable and high-performance applications.
+      3. **Selectors:**
+         NIO introduces the concept of selectors, which allow a single thread to monitor multiple channels (like sockets) for events (such as data ready to read or write). This reduces the need for multiple threads and can improve resource management.
+      4. **Channels:**
+         Java NIO uses channels (`FileChannel`, `SocketChannel`, `DatagramChannel`, etc.) for IO operations. Channels provide a unified way to read from and write to files, sockets, and other IO sources.
+      5. **Advanced File Handling:**
+         NIO includes the `java.nio.file` package, which offers the `Path`, `Files`, and `FileSystem` classes. These provide more advanced file operations, such as symbolic links, file attributes, and file system operations.
+      6. **Direct Buffer Management:**
+         NIO allows for direct buffer management. Direct buffers can be allocated outside of the JVM's heap memory, providing potentially faster IO operations due to reduced copying of data between the JVM and the OS.
+      7. **More Complex:**
+         The NIO API is more complex compared to the traditional IO API. It requires a better understanding of concepts like buffers, channels, and selectors, which can be more challenging for beginners.
+   - **Summary of Differences:**
+  
+      | Feature                       | Java IO                             | Java NIO                                    |
+      |-------------------------------|-------------------------------------|---------------------------------------------|
+      | **Orientation**               | Stream-oriented                     | Buffer-oriented                             |
+      | **Blocking Behavior**         | Blocking IO                         | Non-blocking IO                             |
+      | **Primary Classes**           | `InputStream`, `OutputStream`,      | `Buffer`, `Channel`, `Selector`             |
+      |                               | `Reader`, `Writer`                  |                                             |
+      | **Buffer Management**         | Managed internally by JVM           | Direct buffer management                    |
+      | **File Handling**             | `File` class                        | `Path`, `Files`, `FileSystem` classes       |
+      | **Concurrency**               | Each IO operation blocks a thread   | Single thread can manage multiple channels  |
+      | **Complexity**                | Simpler and easier to use           | More complex and powerful                   |
+      | **Use Cases**                 | Suitable for simple IO tasks        | Suitable for high-performance, scalable apps|
+
+
+   - **When to Use Java IO vs. Java NIO**
+      - **Java IO:**
+         - Use for simple and straightforward IO tasks where performance is not a critical concern.
+         - suitable for application with low to moderate concurrency requirements.
+         - Easier to use and understand, beginners-friendly for simple applications.
+      - **Java NIO:**
+         - Use for high performance, scalable applications, such as servers handling many simultaneous connections.
+         - Suitable for scenarios requiring non-blocking IO and advanced file operations.
+         - Requires a deeper understanding of the underlying concepts but provides greater control and efficiency.
+
+36. **Explain the use of buffers and channels in NIO.**
+   - **Buffers:** Act as containers for data, managing it efficiently between the IO operations and the application logic. They provide methods for reading and writing data and managing the state of the buffer.  
+   - **Channels:** Represent connections to IO resources and support reading and writing operations, often in a non-blocking manner. They work directly with buffers to facilitate efficient data transfer.  
+
+   These two are the fundamental components of the NIO that works together to provide efficient, scalable, non-blocking IO operations.
+   
+   - **Buffers:** A buffer is a container for a fixed amount of data of a specific primitive type (e.g., byte, char, int). It is a crucial component in the NIO API, designed for managing data transfers between channels and the rest of the application.  
+     - **Key Characteristics of Buffers:**
+        1. **Types of Buffers:**
+           - `ByteBuffer`, `CharBuffer`, `IntBuffer`, `FloatBuffer`, etc.
+           - The most commonly used buffer is ByteBuffer.
+        2. **Buffer Operations:**
+           - **put():** Writes data into the buffer.
+           - **get():** Reads data from the buffer.
+           - **flip():** Prepares the buffer for reading data (switches from writing mode to reading mode).
+           - **rewind():** Resets the buffer's position to the beginning for re-reading the data.
+           - **clear():** Clears the buffer for writing data again (resets position and limits but doesn't clear the actual data).
+           - **compact():** Clears the buffer but preserves any unread data.
+        3. **Buffer Properties:**
+           - **Capacity:** The maximum number of elements the buffer can hold.
+           - **Position:** The index of the next element to be read or written.
+           - **Limit:** The index of the first element that should not be read or written.
+           - **Mark:** A marker used to remember a specific position within the buffer.
+   - **Channels:** A channel represents an open connection to an IO resource, such as a file, socket, or device. Channels provide a way to perform both read and write operations.
+      - **Key Characteristics of Channels:**
+         1. **Types of Channels:**
+            - **FileChannel:** For reading from and writing to files.
+            - **SocketChannel:** For reading from and writing to network sockets.
+            - **ServerSocketChannel:** For listening to incoming socket connections.
+            - **DatagramChannel:** For reading and writing datagram packets.
+         2. **Non-Blocking IO:**
+            - Channels can be configured in non-blocking mode, allowing IO operations to be performed asynchronously. This is particularly useful for applications that need to handle many simultaneous connections.
+         3. **Direct Interaction with Buffers:**
+            - Channels read data into buffers and write data from buffers. This interaction makes data handling efficient and flexible.
+   
+   - **Sample Program:** demonstrating how to use a `FileChannel` to read data from a file into a `ByteBuffer`:
+   ```java
+   import java.io.FileInputStream;
+   import java.io.FileOutputStream;
+   import java.io.IOException;
+   import java.nio.ByteBuffer;
+   import java.nio.channels.FileChannel;
+
+   public class NIOExample {
+      public static void main(String[] args) {
+         try (FileInputStream fis = new FileInputStream("input.txt");
+               FileOutputStream fos = new FileOutputStream("output.txt");
+               FileChannel readChannel = fis.getChannel();
+               FileChannel writeChannel = fos.getChannel()) {
+
+               // Allocate a buffer with a capacity of 1024 bytes
+               ByteBuffer buffer = ByteBuffer.allocate(1024);
+
+               // Read data from the channel into the buffer
+               while (readChannel.read(buffer) > 0) {
+                  // Flip the buffer to prepare for reading data from it
+                  buffer.flip();
+                  // Write data from the buffer to the channel
+                  writeChannel.write(buffer);
+                  // Clear the buffer to make it ready for writing again
+                  buffer.clear();
+               }
+
+         } catch (IOException e) {
+               e.printStackTrace();
+         }
+      }
+   }
+   ```
+
+37. **How do you implement serialization and deserialization in Java?**
+   - Serialization and deserialization in Java are processes that allow you to convert objects to a byte stream and back, enabling you to save objects to files, send them over a network, or store them in a database. Java provides built-in support for serialization through the java.io.Serializable interface and the ObjectOutputStream and ObjectInputStream classes.  
+   - **Implementing Serialization and Deserialization**
+      1. **Marking a Class Serializable:**
+         To make a class serializable, you need to implement the Serializable interface. This is a marker interface, meaning it does not contain any methods; it simply marks the class as capable of being serialized.
+         ```java
+         import java.io.Serializable;
+
+         public class Person implements Serializable {
+            private static final long serialVersionUID = 1L;
+
+            private String name;
+            private int age;
+
+            public Person(String name, int age) {
+               this.name = name;
+               this.age = age;
+            }
+
+            // Getters and setters
+            public String getName() {
+               return name;
+            }
+
+            public void setName(String name) {
+               this.name = name;
+            }
+
+            public int getAge() {
+               return age;
+            }
+
+            public void setAge(int age) {
+               this.age = age;
+            }
+
+            @Override
+            public String toString() {
+               return "Person{name='" + name + "', age=" + age + '}';
+            }
+         }
+         ```
+      
+      2. **Serializing an Object :**
+         Serialization involves converting an object into a byte stream so that it can be written to a file or sent over a network. You use `ObjectOutputStream` to write the object to a file or other output stream.
+         ```java
+         import java.io.FileOutputStream;
+         import java.io.IOException;
+         import java.io.ObjectOutputStream;
+
+         public class SerializeExample {
+            public static void main(String[] args) {
+               Person person = new Person("John Doe", 30);
+
+               try (FileOutputStream fileOut = new FileOutputStream("person.ser");
+                     ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+
+                     out.writeObject(person);
+                     System.out.println("Serialized data is saved in person.ser");
+
+               } catch (IOException i) {
+                     i.printStackTrace();
+               }
+            }
+         }
+         ```
+
+      3. **Deserializing an Object :**
+         Deserialization involves converting a byte stream back into a copy of the original object. You use `ObjectInputStream` to read the object from a file or other input stream.
+         ```java
+         import java.io.FileInputStream;
+         import java.io.IOException;
+         import java.io.ObjectInputStream;
+
+         public class DeserializeExample {
+            public static void main(String[] args) {
+               Person person = null;
+
+               try (FileInputStream fileIn = new FileInputStream("person.ser");
+                     ObjectInputStream in = new ObjectInputStream(fileIn)) {
+
+                     person = (Person) in.readObject();
+                     System.out.println("Deserialized Person:");
+                     System.out.println(person);
+
+               } catch (IOException | ClassNotFoundException i) {
+                     i.printStackTrace();
+               }
+            }
+         }
+         ```
+      **Key Points :**
+         - **Serializable Interface:** Classes that need to be serialized must implement the Serializable interface.
+         - **serialVersionUID:** A unique identifier for each serializable class. It helps in version control of classes. If no serialVersionUID is explicitly defined, the JVM will compute one at runtime, which can lead to InvalidClassException if the class structure changes.
+         - **Transient Keyword:** Fields marked with the transient keyword are not serialized. Use this keyword for sensitive information that you don't want to save or send.  
+
+      4. **Custom Serialization:** If you need more control over the serialization process, you can define the following methods in your class:
+      - `private void writeObject(ObjectOutputStream out) throws IOException`
+      - `private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException`
+      ```java
+      import java.io.IOException;
+      import java.io.ObjectInputStream;
+      import java.io.ObjectOutputStream;
+      import java.io.Serializable;
+
+      public class Person implements Serializable {
+         private static final long serialVersionUID = 1L;
+
+         private String name;
+         private int age;
+         private transient String password; // This will not be serialized
+
+         public Person(String name, int age, String password) {
+            this.name = name;
+            this.age = age;
+            this.password = password;
+         }
+
+         private void writeObject(ObjectOutputStream out) throws IOException {
+            out.defaultWriteObject();
+            out.writeObject(encryptPassword(password)); // Custom serialization for password
+         }
+
+         private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+            in.defaultReadObject();
+            this.password = decryptPassword((String) in.readObject()); // Custom deserialization for password
+         }
+
+         private String encryptPassword(String password) {
+            // Simple encryption logic (for demonstration purposes only)
+            return new StringBuilder(password).reverse().toString();
+         }
+
+         private String decryptPassword(String encryptedPassword) {
+            // Simple decryption logic (for demonstration purposes only)
+            return new StringBuilder(encryptedPassword).reverse().toString();
+         }
+
+         // Getters, setters, and toString methods
+      }
+      ```
+
+38. **What are the different types of references in Java?**
+   - There are several types of references that determine how objects are treated by the garbage collector and whether they are eligible for garbage collection. These reference types help manage memory efficiently and handle object lifecycle appropriately. Here are the main types of references in Java:
+    1. **Strong References**
+      - **Normal References:** These are the most common type of references in Java. When an object is referenced by at least one strong reference, it is considered reachable and not eligible for garbage collection.
+      - **Example:** `Object obj = new Object();`
+    2. **Weak References**
+      - **WeakReference:** Objects that are only weakly referenced are eligible for garbage collection if there are no strong references pointing to them. They are useful for implementing memory-sensitive caches and data structures.
+      - **Example:** `WeakReference<Object> weakRef = new WeakReference<>(obj);`
+    3. **Soft References**
+      - **SoftReference:** Objects referenced by soft references are only cleared by the garbage collector when memory is low and before throwing an OutOfMemoryError. They are typically used for caching data that can be discarded when memory is needed.
+      - **Example:** `SoftReference<Object> softRef = new SoftReference<>(obj);`
+    4. **Phantom References**
+      - **PhantomReference:** Phantom references are enqueued in a reference queue after the object to which they refer has been finalized but before its memory has been reclaimed. They are used for implementing cleanup actions or logging before an object is garbage collected.
+      - **Example:** `PhantomReference<Object> phantomRef = new PhantomReference<>(obj, referenceQueue);`
+    5. **Final References**
+      - **FinalReference:** Final references are used internally by the JVM for finalization. They are not directly accessible in Java code but play a role in the finalization process.
+      - **Example:** Not directly accessible in Java code.
+   
+   **Reference Queues**
+      In addition to the above reference types, Java provides reference queues (ReferenceQueue) to support automatic cleanup actions or logging when objects become unreachable. Reference queues are associated with weak, soft, and phantom references, allowing you to receive notifications when these references become eligible for garbage collection.
+   
+   **Summary**
+      - **Strong References:** Keep objects alive until explicitly released or no longer referenced.
+      - **Weak References:** Allow objects to be garbage collected when not strongly referenced.
+      - **Soft References:** Allow objects to be garbage collected when memory is low.
+      - **Phantom References:** Allow cleanup actions to be performed before objects are garbage collected.
+      - **Final References:** Used internally by the JVM for finalization purposes.
+      - **Reference Queues:** Allow tracking of reference objects before they are garbage collected.
+   
+<!-- 39. **How does the Java Stream API work, and what are its benefits?**
+40. What is the difference between an interface and an abstract class? -->

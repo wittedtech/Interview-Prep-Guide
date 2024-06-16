@@ -95,7 +95,7 @@
 
 # Answers :
 
-- All the questions mentioned above were answere in the format of Explanation i.e. an explanatory answer for you to better understand the concept about which the question is; and a summarized answer for you to use it in the interview in front of interviewers to showcase an compact structured answer and avoid the risk of getting trapped in your own answer.
+- **NOTE :** All the questions mentioned above were answere in the format of Explanation i.e. an explanatory answer for you to better understand the concept about which the question is; and a summarized answer for you to use it in the interview in front of interviewers to showcase an compact structured answer and avoid the risk of getting trapped in your own answer.
 
 ---
 

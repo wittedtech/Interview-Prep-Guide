@@ -90,3 +90,21 @@
 3. Explain how you would design a scalable system for a high-traffic e-commerce website.
 4. How would you approach optimizing the performance of a Java application?
 5. Describe your process for integrating a third-party API into your application.
+
+---
+
+# Answers :
+
+- All the questions mentioned above were answere in the format of Explanation i.e. an explanatory answer for you to better understand the concept about which the question is; and a summarized answer for you to use it in the interview in front of interviewers to showcase an compact structured answer and avoid the risk of getting trapped in your own answer.
+
+---
+
+## Core Java Concepts
+
+---
+
+1. **What are the main principles of Object-Oriented Programming (OOP)?**
+
+- **Explanatory Answer:**  
+   Object-Oriented Programming (OOP) is a programming paradigm centered around the concept of objects, which can contain data and code to manipulate that data. The main principles of OOP are:
+  - **Encapsulation:** Bundling the data (variables) and methods (functions) that operate on the data into a single unit or class, and restricting access to some of the object's components. This is typically achieved using access modifiers like private, protected, and public. Example:

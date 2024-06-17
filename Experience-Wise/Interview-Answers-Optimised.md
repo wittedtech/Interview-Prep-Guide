@@ -230,7 +230,7 @@
 
   - **Young Generation:** Where new objects are allocated and aged. It has an "Eden space" and two "Survivor spaces." Minor garbage collections happen frequently in this area.
   - **Old Generation:** Where long-lived objects that survived multiple minor garbage collections are stored. Major garbage collections (full GC) occur here.
-  - **Permanent Generation:** Stores metadata required by the JVM, such as class structures and method objects.
+  - **Permanent Generation:** Stores metadata required by the JVM, such as class structures and method objects.  
     Example of JVM Garbage Collection Logs:
 
   ```java
@@ -244,7 +244,7 @@
   }
   ```
 
-  Running this code with -verbose:gc JVM argument will show garbage collection logs.
+  Running this code with `-verbose:gc` JVM argument will show garbage collection logs.
 
 - **Summary:**  
   Garbage collection in Java automatically frees up memory by destroying objects that are no longer reachable. It involves a mark-and-sweep process and optimizes memory management by dividing the heap into generations.
@@ -254,13 +254,13 @@
 - **Explanatory Answer:**  
    JVM memory areas are divided into several parts, each serving a different purpose:
 
-      - **Heap:** The runtime data area from which memory for all class instances and arrays is allocated. It is divided into:
-        - **Young Generation:** For new objects, further divided into Eden and Survivor spaces.
-        - **Old Generation (Tenured Generation):** For long-lived objects that survive multiple garbage collection cycles.
-      - **Stack:** Stores local variables and partial results, and plays a part in method invocation and return. Each thread has its own stack.
-      - **Method Area (or Permanent Generation/Metaspace):** Stores class structures like metadata, method data, and the runtime constant pool. Metaspace is the improved version of the permanent generation introduced in Java 8.
-      - **PC Registers:** Program Counter Register contains the address of the JVM instruction currently being executed. Each thread has its own PC Register.
-      - **Native Method Stack:** Contains all the native methods used in the application. Each thread has a separate native method stack.
+    - **Heap:** The runtime data area from which memory for all class instances and arrays is allocated. It is divided into:
+      - **Young Generation:** For new objects, further divided into Eden and Survivor spaces.
+      - **Old Generation (Tenured Generation):** For long-lived objects that survive multiple garbage collection cycles.
+    - **Stack:** Stores local variables and partial results, and plays a part in method invocation and return. Each thread has its own stack.
+    - **Method Area (or Permanent Generation/Metaspace):** Stores class structures like metadata, method data, and the runtime constant pool. Metaspace is the improved version of the permanent generation introduced in Java 8.
+    - **PC Registers:** Program Counter Register contains the address of the JVM instruction currently being executed. Each thread has its own PC Register.
+    - **Native Method Stack:** Contains all the native methods used in the application. Each thread has a separate native method stack.
 
   Example:
 
@@ -281,22 +281,22 @@
 - **Explanatory Answer:**  
   The final keyword in Java is used to define an entity that cannot be changed. It can be applied to variables, methods, and classes.
 
-      - **Final Variables:** A final variable can only be initialized once, either via an initializer or an assignment statement. If it is a reference variable, it cannot refer to a different object after the initial assignment.
-      ```java
-          final int MAX_VALUE = 100;
-      ```
-      - **Final Methods:** A final method cannot be overridden by subclasses. This ensures that the implementation remains unchanged.
-      ```java
-          public final void display() {
-              System.out.println("This is a final method.");
-          }
-      ```
-      - **Final Classes:** A final class cannot be subclassed. This is used to prevent inheritance.
-      ```java
-          public final class Constants {
-              public static final String APP_NAME = "MyApp";
-          }
-      ```
+    - **Final Variables:** A final variable can only be initialized once, either via an initializer or an assignment statement. If it is a reference variable, it cannot refer to a different object after the initial assignment.
+    ```java
+        final int MAX_VALUE = 100;
+    ```
+    - **Final Methods:** A final method cannot be overridden by subclasses. This ensures that the implementation remains unchanged.
+    ```java
+        public final void display() {
+            System.out.println("This is a final method.");
+        }
+    ```
+    - **Final Classes:** A final class cannot be subclassed. This is used to prevent inheritance.
+    ```java
+        public final class Constants {
+            public static final String APP_NAME = "MyApp";
+        }
+    ```
 
 - **Summary:**  
   The final keyword in Java is used to restrict modifications. It can make variables constant, prevent methods from being overridden, and prevent classes from being inherited.
@@ -335,33 +335,33 @@
 - **Explanatory Answer:**  
   Java 8 introduced several significant features:
 
-      - **Lambda Expressions:** Enables you to treat functionality as a method argument or treat a code as data. It provides a clear and concise way to represent one method interface using an expression.
-      ```java
-      List<String> list = Arrays.asList("a", "b", "c");
-      list.forEach(e -> System.out.println(e));
-      ```
-      - **Stream API:** Introduces a new abstract layer to process sequences of elements, such as collections. It provides methods for operations like filter, map, and reduce.
-      ```java
-      List<String> list = Arrays.asList("a", "b", "c");
-      list.stream().filter(s -> s.startsWith("a")).forEach(System.out::println);
-      ```
-      - **Default Methods:** Allows interfaces to have methods with implementation. This helps in adding new methods to interfaces without breaking the existing implementation.
-      ```java
-      interface MyInterface {
-          default void myMethod() {
-              System.out.println("Default method");
-          }
-      }
-      ```
-      - **Optional Class:** A container object used to contain not-null objects. It avoids null checks and NullPointerException.
-      ```java
-      Optional<String> optional = Optional.ofNullable("Hello");
-      optional.ifPresent(System.out::println);
-      ```
-      - **Date and Time API:** A new date and time API under the java.time package to address the shortcomings of the old java.util.Date and java.util.Calendar classes.
-      ```java
-      LocalDate date = LocalDate.now();
-      ```
+    - **Lambda Expressions:** Enables you to treat functionality as a method argument or treat a code as data. It provides a clear and concise way to represent one method interface using an expression.
+    ```java
+    List<String> list = Arrays.asList("a", "b", "c");
+    list.forEach(e -> System.out.println(e));
+    ```
+    - **Stream API:** Introduces a new abstract layer to process sequences of elements, such as collections. It provides methods for operations like filter, map, and reduce.
+    ```java
+    List<String> list = Arrays.asList("a", "b", "c");
+    list.stream().filter(s -> s.startsWith("a")).forEach(System.out::println);
+    ```
+    - **Default Methods:** Allows interfaces to have methods with implementation. This helps in adding new methods to interfaces without breaking the existing implementation.
+    ```java
+    interface MyInterface {
+        default void myMethod() {
+            System.out.println("Default method");
+        }
+    }
+    ```
+    - **Optional Class:** A container object used to contain not-null objects. It avoids null checks and NullPointerException.
+    ```java
+    Optional<String> optional = Optional.ofNullable("Hello");
+    optional.ifPresent(System.out::println);
+    ```
+    - **Date and Time API:** A new date and time API under the java.time package to address the shortcomings of the old java.util.Date and java.util.Calendar classes.
+    ```java
+    LocalDate date = LocalDate.now();
+    ```
 
 - **Summary:**  
   Java 8 introduced Lambda Expressions, Stream API, Default Methods, Optional Class, and a new Date and Time API, enhancing the language's functionality and conciseness.
@@ -463,10 +463,10 @@
 - **Explanatory Answer:**
   HashMap is a part of the Java Collections Framework and is used to store key-value pairs. Internally, HashMap works based on a hash table.
 
-      - **Structure:** A HashMap consists of an array of buckets, where each bucket is a linked list or tree structure (in Java 8+).
-      - **Hashing:** When a key-value pair is added, the key's hash code is calculated and used to determine the bucket index. The key-value pair is stored in the appropriate bucket.
-      - **Handling Collisions:** When multiple keys hash to the same bucket index, the entries are stored in a linked list or tree structure within that bucket. In Java 8+, if the number of entries in a bucket exceeds a certain threshold (usually 8), the linked list is converted to a tree for better performance.
-      - **Retrieval:** To retrieve a value, the hash code of the key is used to find the bucket index, and then the key is compared with the entries in the bucket to find the matching key-value pair.
+    - **Structure:** A HashMap consists of an array of buckets, where each bucket is a linked list or tree structure (in Java 8+).
+    - **Hashing:** When a key-value pair is added, the key's hash code is calculated and used to determine the bucket index. The key-value pair is stored in the appropriate bucket.
+    - **Handling Collisions:** When multiple keys hash to the same bucket index, the entries are stored in a linked list or tree structure within that bucket. In Java 8+, if the number of entries in a bucket exceeds a certain threshold (usually 8), the linked list is converted to a tree for better performance.
+    - **Retrieval:** To retrieve a value, the hash code of the key is used to find the bucket index, and then the key is compared with the entries in the bucket to find the matching key-value pair.
 
   Example:
 
@@ -1082,10 +1082,10 @@ WHERE salary < (SELECT MAX(salary) FROM employees);
 - **Explanatory Answer:**  
   ACID properties ensure reliable processing of database transactions.
 
-      - **Atomicity:** Ensures that a transaction is fully completed or not executed at all. All operations within a transaction are treated as a single unit.
-      - **Consistency:** Ensures that a transaction brings the database from one valid state to another, maintaining database integrity.
-      - **Isolation:** Ensures that transactions are executed in isolation from one another, preventing concurrent transactions from affecting each other.
-      - **Durability:** Ensures that once a transaction is committed, it remains permanent, even in the event of a system failure.
+    - **Atomicity:** Ensures that a transaction is fully completed or not executed at all. All operations within a transaction are treated as a single unit.
+    - **Consistency:** Ensures that a transaction brings the database from one valid state to another, maintaining database integrity.
+    - **Isolation:** Ensures that transactions are executed in isolation from one another, preventing concurrent transactions from affecting each other.
+    - **Durability:** Ensures that once a transaction is committed, it remains permanent, even in the event of a system failure.
 
 - **Summary:**  
   ACID properties (Atomicity, Consistency, Isolation, Durability) ensure reliable and consistent processing of database transactions.
@@ -1904,13 +1904,13 @@ System.out.println(filteredNames); // Output: [Alice]
 
 - **Explanatory Answer:**
 
-      - **Requirement Analysis:** Understand the API documentation and determine the requirements for integration.
-      - **Authentication:** Implement the necessary authentication mechanisms (e.g., API keys, OAuth).
-      - **API Client:** Develop or use an existing API client to interact with the third-party API.
-      - **Error Handling:** Implement robust error handling to manage API response errors and network issues.
-      - **Testing:** Thoroughly test the integration in a development environment before deployment.
-      - **Documentation:** Document the integration process, including configuration details and usage examples.
-      - **Monitoring:** Set up monitoring to track the API usage and performance.
+    - **Requirement Analysis:** Understand the API documentation and determine the requirements for integration.
+    - **Authentication:** Implement the necessary authentication mechanisms (e.g., API keys, OAuth).
+    - **API Client:** Develop or use an existing API client to interact with the third-party API.
+    - **Error Handling:** Implement robust error handling to manage API response errors and network issues.
+    - **Testing:** Thoroughly test the integration in a development environment before deployment.
+    - **Documentation:** Document the integration process, including configuration details and usage examples.
+    - **Monitoring:** Set up monitoring to track the API usage and performance.
 
   Summary:
   Integrate a third-party API by analyzing requirements, implementing authentication, developing an API client, handling errors, thoroughly testing, documenting the process, and setting up monitoring.

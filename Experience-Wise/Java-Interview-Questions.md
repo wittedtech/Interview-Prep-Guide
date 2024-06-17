@@ -573,8 +573,9 @@ System.out.println("Outside try-catch-finally clause");
      - Each thread running has it's own stack and is k/a thread stack.
      - used to store Local varibales for primitive(int,long,double, etc.) types.
      - These thread stacks are not visible to other threads even if they are running the same piece of code.
-     - they will create their own seperate copies of local variables for that code in their own thread stack.
-       **Creation of Thread Stack :**
+     - they will create their own seperate copies of local variables for that code in their own thread stack.  
+      
+      **Creation of Thread Stack :**
 
      1. When thread is started, JRE creates a new empty thread stack for that thread.
      2. When thread calls any `methodA()`, JRE pushes a new Frame(Stack Frame- Data Structure used to store state of the method being executred.) onto thread stack. This frame stores the call stack and local variables for the methodA().
@@ -584,11 +585,11 @@ System.out.println("Outside try-catch-finally clause");
      **KEY FEATURES:**
 
      1. **Dynamic Growth and Shrinkage :** Stack Memory grows and shrinks as new method are called and returned respectively as their new stack frame is created and removed respectively.
-     2. **Limited Lifetime :** Varibales declared in the stack exists as long as the method that created them is running, once finish complete frace and local variable are deallocated.
-     3. **Automatic Allocation and Deallocation:** Stack memory is automaticall allocated when method is called and deallocated when method finishes executing.
+     2. **Limited Lifetime :** Varibales declared in the stack exists as long as the method that created them is running, once finish complete frame and local variable are deallocated.
+     3. **Automatic Allocation and Deallocation:** Stack memory is automatically allocated when method is called and deallocated when method finishes executing.
      4. **StackOverflowError :** if the stack becomes full due to excessive method calls(e.g. recursion without any base case), java throws `StackOverflowError`.
      5. **FAST ACCESS :** Stack memory offers fast access compared to Heap Memory because of its working mechanism i.e. Last-In First-Out(LIFO).
-     6. **Thread Safety :** Each thread's, ,ethod and local variables are isolated with each other because they operates in their own stack.
+     6. **Thread Safety :** Each thread's, Method and local variables are isolated with each other because they operates in their own stack.
 
   2. **HEAP MEMORY**
 
@@ -643,13 +644,13 @@ System.out.println("Outside try-catch-finally clause");
 
 - **Strong References :** These are the defualt references used to prevent garabage collection to clean the object from the memory. All other references allows the object to be garbage collected in different scenerios. `String str = "abc"` creates string reference to the String object.
 - **Weak References :** These references do not prevent the object from being collected by the Garbage Collector as soon as the object becomes weakly reachable (only accessible by the weak references), it can be removed by the garabage collector from the memory. These refernces are commonly used for caching and canonicalizing mapping.
-- **Soft References :** These references are similar to weak references but they are cleared less aggressively by the garabage collector. Objects with soft references are only clear when the JVM is running low on memory. Soft references are useful for imp-lementing memory-sensitive cahces.
+- **Soft References :** These references are similar to weak references but they are cleared less aggressively by the garabage collector. Objects with soft references are only clear when the JVM is running low on memory. Soft references are useful for implementing memory-sensitive cahces.
 - **Phantom References :** These are the weakest type of references and they do not prevent the object from being collected by the GC and also they do provide a way to access the object. Phantom references are enqueued with a ReferenceQueue after an object has been collected. they are useful for scheduling post-mortem cleanup actions and detecting when an object has been garbage collected.
 
 27. **Explain lambda expressions and functional interfaces in Java 8.**
 
 - **Lambda Expression :** Lambda expression are the annonymous functions use to implement functional interfaces(interfaces with a single abstract method). Lambda expressions are used to reduce boilerplate code and make the code more concise and readable.
-  Lambda Expressions mainly concists of three parts :
+  Lambda Expressions mainly consists of three parts :
   - **Parameter List :** list of parameters that the lambda expressions accepts and are enclosed with parantheses '()'.
   - **Arrow Operator :** An arrow operator ' -> ' to separate parameter list from the lambda body.
   - **Lambda Body :** Lambda body is the code that is executed when the lambda expression is invoked. It Can be a single statement or a block of statements.
@@ -671,7 +672,7 @@ public interface SquareRoot {
 
 - Stream is the concept introduced in java 8, provides a way to process collections of objects in a functional style and is a part of Java collection framework. They allow to process sequences of elements in a functional style, providing a powerful and efficient way to perform operations on collection of data.
 - **Key Characteristics of Streams:**
-  1. **Sequence of Elements:** STream represents sequences of elements froma source(data whose stream is created) such as collection, an array, or an I/O channel.
+  1. **Sequence of Elements:** Stream represents sequences of elements from a source(data whose stream is created) such as collection, an array, or an I/O channel.
   2. **Functional in Nature:** Stream supports Functional-style operations, making extensive use of lambda expressions.
   3. **Pipelined Processing:** Stream operations can be chained together to form a pipeline. Intermediate operations are lazy and are not executed until a terminal operation is invoked.
   4. **Parallelizable:** Streams can be processed in parallel without having to explicitly manage thread creation and synchronization.
@@ -804,16 +805,16 @@ public interface SquareRoot {
 ---
 
 - **For Detail Explanation of System Design Patterns do checkout below mentioned resources :**
-  1. [System Design Pattern]() by @wittedtech
+  1. [Java Design Pattern](https://github.com/wittedtech/Java-Design-Patterns-by-wittedtech) by @wittedtech
   2. [System Design Primer](https://github.com/donnemartin/system-design-primer) by @donnemartin
 - **For Detailed Programming Examples do checkout one of my another repo :**
-  [System Design Pattern Examples Using Java]()
+  [Java Design Pattern Examples](https://github.com/wittedtech/Interview-Prep-Guide/tree/main/Java-Coding-Questions/Design-Pattern-Java)
 
 ---
 
-31. **When would you use Dependency Injection?**
+1.  **When would you use Dependency Injection?**
 
-- Dependency Injection is design pattern used to implement `Inversion of Control (IoC)` for resolving dependencies in an application. In Java Dependency Injection is commonly used to create loosely coupled code, configuration management, and for code reusability as well. @Autowired in springboot is the best example of Dependency Injection because it adds the depency via loosely couples object of the component/bean.
+- Dependency Injection is design pattern used to implement `Inversion of Control (IoC)` for resolving dependencies in an application. In Java, Dependency Injection is commonly used to create loosely coupled code, configuration management, and for code reusability as well. @Autowired in springboot is the best example of Dependency Injection because it adds the depency via loosely couples object of the component/bean.
 
 32. **Explain the JVM architecture.**
 

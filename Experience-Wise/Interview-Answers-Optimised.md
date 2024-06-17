@@ -1196,16 +1196,16 @@ GROUP BY department;
 - **Explanatory Answer:**  
   A foreign key is a column or group of columns in one table that uniquely identifies rows in another table. The purpose of a foreign key is to ensure referential integrity between the two tables, establishing a link between them.
 
-      Example:
+    Example:
 
-      ```sql
+    ```sql
 
-      CREATE TABLE orders (
-      order_id INT PRIMARY KEY,
-      customer_id INT,
-      FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
-      );
-      ```
+    CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+    );
+    ```
 
 - **Summary:**  
   A foreign key ensures referential integrity by linking rows in one table to rows in another, maintaining consistent and valid data relationships.

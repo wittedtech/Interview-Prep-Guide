@@ -1,4 +1,4 @@
-**Java 7 or We Just Say General Jva Questions Mostly Asked in Interviews**
+# **Java 7 or We Just Say General Jva Questions Mostly Asked in Interviews**
 
 1. What is the difference between HashMap and HashTable?
 2. How does hashmap work internally?
@@ -12,3 +12,12 @@
 10. Can we override the static method?
 11. Write a Program to find the duplicates in an array using stream API.
 12. Explain Throw, throws, and throwable keywords in Java.
+
+# Java Platform
+
+1. Why is Java so popular?
+2. What is platform independence?
+3. What is bytecode?
+4. Compare JDK vs JVM vs JRE
+5. What are the important differences between C++ and Java?
+6. What is the role for a classloader in Java?

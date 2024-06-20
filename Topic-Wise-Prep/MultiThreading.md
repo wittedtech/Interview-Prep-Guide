@@ -26,3 +26,29 @@
 20. What is Java Timer Class? How to schedule a task to run after specific interval?
 21. What is Thread Pool? How can we create Thread Pool in Java?
 22. What will happen if we don’t override Thread class run() method?
+
+## Some More Questions To Explore:
+
+23. What is the need for threads in Java?
+24. How do you create a thread?
+25. How do you create a thread by extending thread class?
+26. How do you create a thread by implementing runnable interface?
+27. How do you run a thread in Java?
+28. What are the different states of a thread?
+29. What is priority of a thread? How do you change the priority of a thread?
+30. What is executorservice?
+31. Can you give an example for executorservice?
+32. Explain different ways of creating executor services .
+33. How do you check whether an executionservice task executed successfully?
+34. What is callable? How do you execute a callable from executionservice?
+35. What is synchronization of threads?
+36. Can you give an example of a synchronized block?
+37. Can a static method be synchronized?
+38. What is the use of join method in threads?
+39. Describe a few other important methods in threads?
+40. What is a deadlock?
+41. What are the important methods in Java for inter-thread communication?
+42. What is the use of wait method?
+43. What is the use of notify method?
+44. What is the use of notifyall method?
+45. Can you write a synchronized program with wait and notify methods?

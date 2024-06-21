@@ -64,7 +64,7 @@
    - Garbage Collector (GC) is invoked/called by JVM , Whenever an object becomes eligible for gc and by eleigible mostly i mean an unreachable object, still its not necessary that gc will instatntly collect that object, it will be destroyed whenever JVM will call the gc but if we want to call garbage collector manually we can do so with two different methods and they both are equally capable :
 
    1. `System.gc()` method : System clas contain static method gc() to manually call garbage collector.
-   2. `Runtime.getRuntime.gc()` method : Runtime class allows us to interface the JVM in which the application is running and but using its gc() method we can request JVM to call garbage collector.
+   2. `Runtime.getRuntime.gc()` method : Runtime class allows us to interface the JVM in which the application is running and but using its gc() method we can request JVM to call garbage collector.  
       **NOTE :** - Both the methods are equally effective and by using these two methods it not guaranteed that garbage collector will run for sure.
 
    - **Grabage Collector** internally callls `finalize()` method present in Object class just before destroying any objects from the heap finalize() method is called on that object to perform a final cleanup process and after that garbage collector destroys that object. `finalize()` runs only once per object.

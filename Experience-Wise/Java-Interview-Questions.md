@@ -67,7 +67,7 @@
    2. `Runtime.getRuntime.gc()` method : Runtime class allows us to interface the JVM in which the application is running and but using its gc() method we can request JVM to call garbage collector.  
       **NOTE :** - Both the methods are equally effective and by using these two methods it not guaranteed that garbage collector will run for sure.
 
-   - **Grabage Collector** internally callls `finalize()` method present in Object class just before destroying any objects from the heap finalize() method is called on that object to perform a final cleanup process and after that garbage collector destroys that object. `finalize()` runs only once per object.
+   - **Grabage Collector** internally callls `finalize()` method present in Object class just before destroying any objects from the heap finalize() method is called on that object to perform a final cleanup process and after that garbage collector destroys that object. `finalize()` runs only once per object.  
      **NOTE :**
 
      1. finalize() method is called by Garbage Collector not by JVM.

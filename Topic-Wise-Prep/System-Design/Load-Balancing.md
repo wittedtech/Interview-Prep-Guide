@@ -1,5 +1,12 @@
 # Load Balancing and Load Balancing Algorithms
 
+## Load Balancing
+- It is the process of distributing network or application traffic across a number of servers to ensure no single server bears too much load.
+- It is used to increase the availability and reliability of the system.
+- It is used to distribute the load evenly across the servers.
+  
+
+  
 ## Load Balancing Algorithms
 
 1. **Round Robin**

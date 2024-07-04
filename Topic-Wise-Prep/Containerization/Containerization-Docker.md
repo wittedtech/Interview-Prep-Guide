@@ -65,26 +65,26 @@ Docker images are read-only templates used to create containers. They contain th
   - **Docker Hub:**  A repository for storing and sharing Docker images. You can use Docker Hub to pull pre-built images or push your own images.
 **Docker Containers:** 
 Containers are instances of Docker images that run as isolated processes on the host operating system.**Running Containers:**  
-  - **Starting a Container:** 
+- **Starting a Container:** 
 
 ```sh
 docker run <image_name>
 ```
  
-  - **Managing Containers:**  
-    - **Listing Containers:** 
+- **Managing Containers:**  
+- **Listing Containers:** 
 
 ```sh
 docker ps
 ```
  
-    - **Stopping a Container:** 
+- **Stopping a Container:** 
 
 ```sh
 docker stop <container_id>
 ```
  
-    - **Removing a Container:** 
+- **Removing a Container:** 
 
 ```sh
 docker rm <container_id>

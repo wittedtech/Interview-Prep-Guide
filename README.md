@@ -56,7 +56,7 @@
 
 ---
 
-Content of this repository is continuously updated by [@wittedtech || Harshit Singh](https://www.linkedin.com/in/harshitsingh-wittedtech/).
+Content of this repository are continuously updated by [@wittedtech || Harshit Singh](https://www.linkedin.com/in/harshitsingh-wittedtech/).
 
 ---
 

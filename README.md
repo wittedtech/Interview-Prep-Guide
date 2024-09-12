@@ -48,9 +48,11 @@
     - [Interview Question Answers](./Topic-Wise-Prep/Messaging-Brokers/Interview-Questions-Answers.md)
     - [Kafka](./Topic-Wise-Prep/Messaging-Brokers/Kafka.md)
     - [Overview and Guide](./Topic-Wise-Prep/Messaging-Brokers/Overview-and-Guide.md)
+  - [Multithreading](./Topic-Wise-Prep/Multithreading/)
+    - [Multithreading_In_Depth](./Topic-Wise-Prep/Multithreading/Multithreading_In_Depth.md)
+    - [Multi-Threading](./Topic-Wise-Prep/Multithreading/MultiThreading.md)
   - [General-Basic-Java](./Topic-Wise-Prep/General-Java.md)
   - [Object Oriented Programming (OOPs) Concepts](./Topic-Wise-Prep/OOPs-Concepts.md)
-  - [Multi-Threading](./Topic-Wise-Prep/MultiThreading.md)
   - [Spring Boot](./Topic-Wise-Prep/Spring-Boot.md)
   - [Java New Versions and Features](./Topic-Wise-Prep/Java-New-Versions-Features.md)
 

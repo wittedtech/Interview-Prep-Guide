@@ -72,6 +72,6 @@ Content of this repository are continuously updated by [@wittedtech || Harshit S
 
 - **Instagram :** [Harshit Singh || wittedtech](https://www.instagram.com/witted.tech/) <img src="https://www.svgrepo.com/show/521711/instagram.svg" alt="Instagram SVG" height="20" width="50" style="vertical-align: middle;">
 
-- **X || Twitter :** [Harshit Singh](https://x.com/HarshitSin31180) <img src="https://www.svgrepo.com/show/11841/twitter.svg" alt="Twitter SVG" height="20" width="50" style="vertical-align: middle;">
+- **X || Twitter :** [Harshit Singh](https://x.com/harshitsinghHS) <img src="https://www.svgrepo.com/show/11841/twitter.svg" alt="Twitter SVG" height="20" width="50" style="vertical-align: middle;">
 
 - **Facebook :** [Harshit Singh](https://www.facebook.com/0Kunwar0/) <img src="https://www.svgrepo.com/show/503338/facebook.svg" alt="Facebook SVG" height="20" width="50" style="vertical-align: middle;">

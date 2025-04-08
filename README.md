@@ -70,7 +70,7 @@ Content of this repository are continuously updated by [@wittedtech || Harshit S
 
 - **LinkedIn :** [Harshit Singh](https://www.linkedin.com/in/harshitsingh-wittedtech/) <img src="https://www.svgrepo.com/show/108614/linkedin.svg" alt="Linkedin SVG" height="20" width="50" style="vertical-align: middle;">
 
-- **Instagram :** [wittedtech.ai](https://www.instagram.com/wittedtech.ai/) <img src="https://www.svgrepo.com/show/521711/instagram.svg" alt="Instagram SVG" height="20" width="50" style="vertical-align: middle;">
+- **Instagram :** [Harshit Singh || wittedtech](https://www.instagram.com/witted.tech/) <img src="https://www.svgrepo.com/show/521711/instagram.svg" alt="Instagram SVG" height="20" width="50" style="vertical-align: middle;">
 
 - **X || Twitter :** [Harshit Singh](https://x.com/HarshitSin31180) <img src="https://www.svgrepo.com/show/11841/twitter.svg" alt="Twitter SVG" height="20" width="50" style="vertical-align: middle;">
 

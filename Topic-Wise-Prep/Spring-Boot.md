@@ -3300,6 +3300,2275 @@ These annotations simplify caching logic and work seamlessly with providers like
 
 ---
 
+# Experience-Wise Spring-Boot Interview Questions
+
+## ✅ Less than 1 Year Experience
+
+> _For freshers or those with up to 1 year of experience. Focus is on fundamental understanding._
+
+1.  What is Spring Boot?
+2.  What are the Features of Spring Boot?
+3.  What are the advantages of using Spring Boot?
+4.  Define the Key Components of Spring Boot.
+5.  Why do we prefer Spring Boot over Spring?
+6.  Explain the internal working of Spring Boot.
+7.  What are the Spring Boot Starter Dependencies?
+8.  How does a Spring application get started?
+9.  What does the `@SpringBootApplication` annotation do internally?
+10. What is Spring Initializr?
+
+11. What are Spring Boot CLI and the most used CLI commands?
+
+---
+
+## 🧠 1 to 2 Years Experience
+
+> _For those with some practical experience. Focus is on annotations, configuration, and behavior understanding._
+
+1.  What are the basic Spring Boot Annotations?
+2.  What is Spring Boot dependency management?
+3.  Is it possible to change the port of the embedded Tomcat server in Spring Boot?
+4.  What is the starter dependency of the Spring Boot module?
+5.  What is the default port of Tomcat in Spring Boot?
+6.  Can we disable the default web server in the Spring Boot application?
+7.  How to disable a specific auto-configuration class?
+8.  Can we create a non-web application in Spring Boot?
+9.  Describe the flow of HTTPS requests through the Spring Boot application.
+10. Explain `@RestController` annotation in Spring Boot.
+
+11. Difference between `@Controller` and `@RestController`.
+
+12. What is the difference between `@RequestMapping` and `@GetMapping`?
+
+13. What are the differences between `@SpringBootApplication` and `@EnableAutoConfiguration` annotation?
+
+14. What are Profiles in Spring?
+
+15. Mention the differences between WAR and embedded containers.
+
+---
+
+## 🔧 2 to 3 Years Experience
+
+> _Focuses on implementation, security, bean handling, logging, and design decisions._
+
+1.  Purpose of Spring Boot’s `@EnableAutoConfiguration` annotation
+2.  Relationship between `@SpringBootApplication` and `@EnableAutoConfiguration`
+3.  Difference between `@Component`, `@Repository`, `@Service` annotations
+4.  How Spring Boot supports asynchronous processing
+5.  Significance of Spring Boot’s `@Conditional` annotations
+6.  How Spring Boot handles logging
+7.  CSRF protection in Spring Security and how to disable it
+8.  Purpose of `SecurityContextHolder` in Spring Security
+9.  Benefits of Spring Boot’s Actuator endpoints
+10. How Spring Boot’s `@Value` annotation works
+
+11. Spring Boot’s `WebClient` vs. `RestTemplate`
+
+12. How Spring manages circular dependencies
+
+13. Role of `@Primary`, `@Qualifier`, `@Profile` in bean selection
+
+14. Difference between `@Bean` and `@Component`
+
+15. Circuit Breaker and implementation in Spring Boot
+
+16. Secure Spring Boot REST APIs using OAuth2 with Google
+
+17. Purpose of `@DataJpaTest` in Spring Boot
+
+18. What are `@ConfigurationProperties` in Spring Boot
+
+19. How Spring Boot handles caching and caching annotations
+
+20. Different scopes of Spring Beans
+
+---
+
+## 🧪 3 to 4 Years Experience
+
+> _More advanced usage, configuration, and application introspection._
+
+1.  What is Spring Boot Actuator?
+2.  How to enable Actuator in the Spring Boot application?
+3.  What is the purpose of using `@ComponentScan` in class files?
+4.  What are the `@RequestMapping` and `@RestController` annotations used for?
+5.  How to get the list of all the beans in your Spring Boot application?
+6.  Can we check the environment properties in your Spring Boot application? Explain how.
+7.  How to enable debugging logs in the Spring Boot application?
+8.  What is Dependency Injection and its types?
+9.  What is an IoC container?
+10. What is the difference between Constructor and Setter Injection?
+
+---
+
+## 🚀 4+ Years Experience
+
+> _Advanced questions focusing on microservices, optimization, custom implementations, and production readiness._
+
+1.  Optimizing Spring Boot startup time in production
+2.  Spring Boot’s `@ConfigurationProperties` with complex objects
+3.  Distributed tracing challenges and implementation in microservices
+4.  Implementing robust custom health check with Actuator
+5.  Handling service discovery in microservices with Eureka
+6.  Spring Boot’s `@Retryable` annotation for microservices reliability
+7.  Implementing custom security policies with Spring Security
+8.  Event-driven microservices with Kafka or RabbitMQ
+9.  Handling versioning in Spring Boot APIs
+10. Implementing multi-tenancy in Spring Boot applications
+
+11. Creating a custom Spring Boot starter module
+
+12. Managing external configurations across environments
+
+13. Strategies for debugging Spring Boot in production
+
+14. Implementing Spring Boot Security with OAuth 2.0 for microservices
+
+15. Common performance bottlenecks and resolutions
+
+16. Handling asynchronous processing with `@Async`
+
+17. Implementing caching with `@Cacheable`
+
+18. Configuring and managing Spring Boot logging in production
+
+19. Implementing API Gateway with Spring Cloud Gateway
+
+20. Handling transactions with `@Transactional`
+
+21. Differences between `@RequestMapping`, `@GetMapping`, `@PostMapping`, etc.
+
+22. Implementing file upload and download functionality
+
+23. Using Spring Boot profiles for different environments
+
+24. Implementing JWT-based authentication
+
+25. Configuring Spring Boot with Docker for containerization
+
+26. Implementing rate-limiting in Spring Boot
+
+27. Implementing custom exception handler with `@ControllerAdvice`
+
+28. Using `@Scheduled` annotation for background tasks
+
+29. Implementing Spring Boot with NoSQL databases like MongoDB, Cassandra
+
+30. Configuring Spring Boot with message queues like RabbitMQ, Kafka
+
+---
+
+## Answers of All the Questions Listed Above Experience-Wise
+
+### ✅ Spring Boot Interview Questions (For Beginners – Less than 1 Year Experience)
+
+---
+
+#### 1\. What is Spring Boot?
+
+Spring Boot is a framework that makes it easier to create Java applications quickly. It builds on top of the Spring Framework but simplifies it by providing:
+
+- Default configurations
+- Auto-setup for commonly used libraries
+- Embedded servers
+- Production-ready tools
+
+**Analogy:** Think of it like a pre-cooked meal kit — you just add your ingredients (code), and it sets up the kitchen (environment) for you!
+
+**Use Cases:** Web apps, microservices, REST APIs, and enterprise apps.
+
+---
+
+#### 2\. What are the Features of Spring Boot?
+
+- **Auto-Configuration:** Automatically configures your application based on the libraries on the classpath.
+- **Starters:** Pre-configured dependency bundles (e.g., `spring-boot-starter-web`).
+- **Embedded Servers:** No need to deploy WARs — uses embedded Tomcat, Jetty, etc.
+- **Spring Boot CLI:** Run and test apps from the terminal using Groovy.
+- **Spring Boot Actuator:** Built-in endpoints to monitor and manage your application (`/health`, `/metrics`, etc.).
+
+These features enable **faster, cleaner, and hassle-free development**.
+
+---
+
+#### 3\. What are the Advantages of Using Spring Boot?
+
+- **Faster Development:** Minimal setup, lots of auto-configuration.
+- **Simplified Configuration:** Little to no XML/Java config needed.
+- **Embedded Servers:** Deploy as JAR files with embedded Tomcat/Jetty.
+- **Reduced Boilerplate Code:** Focus more on business logic.
+- **Microservices Friendly:** Perfect for cloud-native applications.
+- **Vast Community Support:** Tons of documentation and community help.
+
+---
+
+#### 4\. Define the Key Components of Spring Boot
+
+- **Starters:** Bundles of dependencies for different use-cases (`web`, `JPA`, `security`, etc.).
+- **Auto-Configuration:** Enables Spring Boot to guess and configure things automatically.
+- **Spring Boot CLI:** A Groovy-based command-line tool to build and run Spring apps quickly.
+- **Actuator:** Provides endpoints to help monitor, analyze, and manage production-ready apps.
+- **Spring Initializr:** A web-based tool to bootstrap Spring Boot projects.
+
+---
+
+#### 5\. Why Do We Prefer Spring Boot Over Spring?
+
+- **No XML Configuration:** Everything is annotation-driven.
+- **Auto Setup:** Auto-configures your app based on classpath.
+- **Embedded Servers:** Eliminates the need for external servlet containers.
+- **Starter POMs:** Include everything needed for specific features.
+- **Less Boilerplate Code:** Faster development cycles.
+- **Developer Productivity:** Spring Boot streamlines and accelerates development.
+
+---
+
+#### 6\. Explain the Internal Working of Spring Boot
+
+Spring Boot does the following behind the scenes:
+
+- **Classpath Scanning:** Scans your dependencies and identifies what’s required.
+- **Auto-Configuration:** Applies relevant configurations (e.g., `DataSource`, `DispatcherServlet`).
+- **Starter Dependencies:** Uses predefined starter packs for features.
+- **Embedded Server Initialization:** Launches an embedded server like Tomcat.
+- **Runs the App:** Uses `SpringApplication.run()` to bootstrap the app.
+
+It’s designed to **“just work”** with minimal setup.
+
+---
+
+#### 7\. What are the Spring Boot Starter Dependencies?
+
+Some popular Spring Boot starters include:
+
+- `spring-boot-starter-web`: For building web apps with Spring MVC and embedded Tomcat
+- `spring-boot-starter-data-jpa`: For integrating JPA and Hibernate
+- `spring-boot-starter-security`: For adding authentication and authorization
+- `spring-boot-starter-test`: For testing with JUnit, Mockito, etc.
+- `spring-boot-starter-thymeleaf`: For server-side rendered views using Thymeleaf
+
+**Think of starters as combo packs** that include all the libraries you need for specific tasks.
+
+---
+
+#### 8\. How Does a Spring Application Get Started?
+
+1.  **Create a main class** with a `main()` method.
+2.  **Add the `@SpringBootApplication` annotation** to enable auto-configuration and scanning.
+3.  **Run using `SpringApplication.run()`**.
+
+```java
+@SpringBootApplication
+public class MyApp {
+    public static void main(String[] args) {
+        SpringApplication.run(MyApp.class, args);
+    }
+}
+```
+
+Spring Boot sets up the entire application context, initializes beans, and starts the embedded server.
+
+---
+
+#### 9\. What Does the `@SpringBootApplication` Annotation Do Internally?
+
+It’s a combination of:
+
+- `@Configuration`: Marks the class as a configuration class.
+- `@EnableAutoConfiguration`: Enables Spring Boot’s auto-configuration.
+- `@ComponentScan`: Scans the package for components like controllers, services, and repositories.
+
+**So basically**, it bootstraps your entire application in one go.
+
+---
+
+#### 10\. What is Spring Initializr?
+
+Spring Initializr ([https://start.spring.io](https://start.spring.io)) is a web-based project generator.
+
+You can:
+
+- Choose your **build tool** (Maven/Gradle)
+- Choose **Java version** and language
+- Select **dependencies** (like web, JPA, security)
+- Download a preconfigured **project zip**
+
+**It’s like a Spring project wizard** — saves time and removes all the setup hassle.
+
+---
+
+#### 11\. What are Spring Boot CLI and the Most Used CLI Commands?
+
+Spring Boot CLI (Command Line Interface) is a tool that allows you to run Spring apps and scripts quickly without an IDE.
+
+**Common Commands:**
+
+- `spring run app.groovy` – Runs a Groovy-based Spring Boot app
+- `spring init --dependencies=web,data-jpa demo` – Creates a new Spring Boot project with given dependencies
+- `spring test app.groovy` – Runs tests for your app
+- `spring shell` – Opens an interactive shell for experimenting
+
+**Useful for quick prototyping**, learning, and automating project creation.
+
+---
+
+### ✅ Well-Explained Answers for 1–2 Years of Experience
+
+For developers with 1-2 years of experience, the focus shifts toward practical application, understanding annotations, configurations, and how Spring Boot behaves in real-world scenarios. The answers below provide clear explanations with examples, emphasizing key concepts without overwhelming with unnecessary depth.
+
+---
+
+#### 1\. What are the Basic Spring Boot Annotations?
+
+Spring Boot uses annotations to simplify configuration and coding. Here are the most common ones:
+
+- `@SpringBootApplication`: Combines `@Configuration`, `@EnableAutoConfiguration`, and `@ComponentScan` to set up your app.
+- `@Controller`: Marks a class as a web controller to handle HTTP requests.
+- `@RestController`: A specialized `@Controller` that returns data (e.g., JSON) directly, not views.
+- `@RequestMapping`: Maps HTTP requests to methods (e.g., `/home`).
+- `@Service`: Indicates a class handles business logic.
+- `@Repository`: Marks a class as a data access layer (e.g., for database operations).
+- `@Autowired`: Automatically injects dependencies into your code.
+
+These annotations reduce boilerplate and make your code cleaner.
+
+---
+
+#### 2\. What is Spring Boot Dependency Management?
+
+Spring Boot dependency management simplifies handling libraries in your project. It:
+
+- Uses starters (e.g., `spring-boot-starter-web`) that bundle related dependencies (like Spring MVC, Tomcat).
+- Automatically manages versions of these dependencies via the `spring-boot-dependencies` POM file, so you don’t need to specify versions manually.
+- Allows overrides if you need a specific version (e.g., in `pom.xml`).
+
+**Example (Maven):**
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+```
+
+This pulls in everything needed for a web app, with compatible versions.
+
+---
+
+#### 3\. Is it Possible to Change the Port of the Embedded Tomcat Server in Spring Boot?
+
+Yes, you can change the default port (8080) of the embedded Tomcat server easily:
+
+**Via `application.properties`:**
+
+```properties
+server.port=8081
+```
+
+**Via Java code (less common):**
+
+```java
+@SpringBootApplication
+public class MyApp {
+    public static void main(String[] args) {
+        SpringApplication app = new SpringApplication(MyApp.class);
+        app.setDefaultProperties(Collections.singletonMap("server.port", "8081"));
+        app.run(args);
+    }
+}
+```
+
+This flexibility lets you avoid port conflicts in development or production.
+
+---
+
+#### 4\. What is the Starter Dependency of the Spring Boot Module?
+
+A "starter" dependency is a pre-packaged set of libraries that Spring Boot provides to simplify setup for specific features.
+
+For example:
+
+- `spring-boot-starter-web`: Includes Spring MVC, Tomcat, and JSON support for web apps.
+- `spring-boot-starter-data-jpa`: Adds Hibernate and Spring Data for database access.
+- `spring-boot-starter-security`: Provides Spring Security for authentication.
+
+They’re defined in your `pom.xml` (Maven) or `build.gradle` (Gradle) and reduce manual dependency management.
+
+**Example:**
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+```
+
+---
+
+#### 5\. What is the Default Port of Tomcat in Spring Boot?
+
+The default port for the embedded Tomcat server in Spring Boot is **8080**. You can access your app at [http://localhost:8080](http://localhost:8080) unless you change it (e.g., via `server.port` in `application.properties`). This default makes it easy to get started without extra configuration.
+
+---
+
+#### 6\. Can We Disable the Default Web Server in the Spring Boot Application?
+
+Yes, you can disable the default web server (e.g., Tomcat) to create a non-web app.
+
+**In `application.properties`:**
+
+```properties
+spring.main.web-application-type=none
+```
+
+**Or in your main class:**
+
+```java
+@SpringBootApplication
+public class MyApp {
+    public static void main(String[] args) {
+        SpringApplication app = new SpringApplication(MyApp.class);
+        app.setWebApplicationType(WebApplicationType.NONE);
+        app.run(args);
+    }
+}
+```
+
+This is useful for batch jobs or console apps that don’t need a web server.
+
+---
+
+#### 7\. How to Disable a Specific Auto-Configuration Class?
+
+Spring Boot auto-configures many features, but you can disable specific ones:
+
+**Use the `exclude` attribute in `@SpringBootApplication`:**
+
+```java
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+public class MyApp {
+    public static void main(String[] args) {
+        SpringApplication.run(MyApp.class, args);
+    }
+}
+```
+
+**Or in `application.properties`:**
+
+```properties
+spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+```
+
+This is handy if you want to customize a feature (e.g., database setup) manually.
+
+---
+
+#### 8\. Can We Create a Non-Web Application in Spring Boot?
+
+Yes, Spring Boot isn’t just for web apps. To create a non-web app:
+
+- Remove web-related starters (e.g., `spring-boot-starter-web`).
+- Disable the web server:
+
+```properties
+spring.main.web-application-type=none
+```
+
+**Example for a console app:**
+
+```java
+@SpringBootApplication
+public class MyApp {
+    public static void main(String[] args) {
+        SpringApplication.run(MyApp.class, args);
+        System.out.println("Hello, non-web app!");
+    }
+}
+```
+
+This is great for batch processing or command-line tools.
+
+---
+
+#### 9\. Describe the Flow of HTTPS Requests Through the Spring Boot Application.
+
+Here’s how an HTTPS request flows:
+
+1.  **Client Sends Request**: A browser sends an HTTPS request (e.g., `https://localhost:8443/api`).
+2.  **Embedded Server (Tomcat)**: Receives the request, decrypts it using SSL/TLS (if configured with a certificate).
+3.  **DispatcherServlet**: Spring Boot’s central servlet routes the request to the right controller.
+4.  **Controller**: A `@RestController` or `@Controller` method processes the request (e.g., fetches data).
+5.  **Response**: The controller returns a response (e.g., JSON), which is encrypted and sent back via Tomcat.
+
+**Example HTTPS setup:**
+
+```properties
+server.port=8443
+server.ssl.key-store=classpath:keystore.jks
+server.ssl.key-store-password=secret
+```
+
+---
+
+#### 10\. Explain @RestController Annotation in Spring Boot.
+
+`@RestController` is a Spring annotation that combines `@Controller` and `@ResponseBody`. It:
+
+- Marks a class as a web controller.
+- Automatically converts method return values (e.g., objects) to JSON or XML for HTTP responses.
+
+**Example:**
+
+```java
+@RestController
+public class MyController {
+    @GetMapping("/hello")
+    public String sayHello() {
+        return "Hello, World!";
+    }
+}
+```
+
+Calling `/hello` returns `"Hello, World!"` as JSON. It’s perfect for REST APIs.
+
+---
+
+#### 11\. Difference Between @Controller and @RestController
+
+**@Controller:**
+
+- Used for traditional web apps that return views (e.g., HTML pages).
+- Needs `@ResponseBody` to return data directly (e.g., JSON).
+
+**@RestController:**
+
+- Designed for REST APIs; always returns data (e.g., JSON) directly.
+- Includes `@ResponseBody` by default.
+
+**Example:**
+
+```java
+@Controller
+public class ViewController {
+    @GetMapping("/page")
+    public String getPage() {
+        return "index"; // Returns a view name
+    }
+}
+
+@RestController
+public class ApiController {
+    @GetMapping("/data")
+    public String getData() {
+        return "Hello"; // Returns "Hello" as JSON
+    }
+}
+```
+
+---
+
+#### 12\. What is the Difference Between @RequestMapping and @GetMapping?
+
+**@RequestMapping:**
+
+- General-purpose annotation for mapping any HTTP method (GET, POST, etc.).
+- Requires specifying the method (e.g., `method = RequestMethod.GET`).
+
+**@GetMapping:**
+
+- Shortcut for `@RequestMapping` specifically for GET requests.
+- Cleaner and more readable.
+
+**Example:**
+
+```java
+@RequestMapping(value = "/test", method = RequestMethod.GET)
+public String oldWay() {
+    return "Test";
+}
+
+@GetMapping("/test")
+public String newWay() {
+    return "Test";
+}
+```
+
+---
+
+#### 13\. What are the Differences Between @SpringBootApplication and @EnableAutoConfiguration?
+
+**@SpringBootApplication:**
+
+- A combo annotation: `@Configuration`, `@EnableAutoConfiguration`, and `@ComponentScan`.
+- Used on the main class to bootstrap the entire app.
+
+**@EnableAutoConfiguration:**
+
+- Only enables auto-configuration based on classpath dependencies.
+- Doesn’t include scanning or configuration features.
+
+Use `@SpringBootApplication` for simplicity; use `@EnableAutoConfiguration` if you need finer control.
+
+---
+
+#### 14\. What are Profiles in Spring?
+
+Profiles in Spring let you define different configurations for different environments (e.g., dev, prod). You:
+
+**Set a profile in `application.properties`:**
+
+```properties
+spring.profiles.active=dev
+```
+
+**Use profile-specific files (e.g., `application-dev.properties`):**
+
+```properties
+server.port=8081
+```
+
+**Or annotate beans:**
+
+```java
+@Profile("dev")
+@Bean
+public String devBean() {
+    return "Dev Mode";
+}
+```
+
+This keeps environment-specific settings separate.
+
+---
+
+#### 15\. Mention the Differences Between WAR and Embedded Containers
+
+**WAR (Web Archive):**
+
+- A packaged file (`.war`) deployed on an external server (e.g., Tomcat, JBoss).
+- Requires manual server setup and deployment.
+- Traditional approach for Spring apps.
+
+**Embedded Containers:**
+
+- Server (e.g., Tomcat) is bundled inside your Spring Boot app.
+- Runs as a standalone `.jar` with `java -jar`.
+- No external server needed; faster to start.
+
+Spring Boot prefers embedded containers for simplicity and microservices.
+
+---
+
+### ✅ Well-Explained Answers for 2–3 Years of Experience
+
+For developers with 2–3 years of experience, the focus is on deeper implementation details, security, bean management, and design decisions. The answers below are practical, concise, and include examples to align with this experience level.
+
+---
+
+#### 1\. Purpose of Spring Boot’s `@EnableAutoConfiguration` Annotation
+
+`@EnableAutoConfiguration` tells Spring Boot to automatically configure your application based on the dependencies in your classpath. For example, if `spring-boot-starter-web` is present, it sets up a web server and Spring MVC. It uses conditional logic (via `@Conditional`) to decide what to configure, reducing manual setup.  
+Example:
+
+```java
+@EnableAutoConfiguration
+public class MyApp {
+    public static void main(String[] args) {
+        SpringApplication.run(MyApp.class, args);
+    }
+}
+```
+
+It’s a key part of Spring Boot’s “convention over configuration” philosophy.
+
+---
+
+#### 2\. Relationship Between `@SpringBootApplication` and `@EnableAutoConfiguration`
+
+`@SpringBootApplication` is a convenience annotation that includes `@EnableAutoConfiguration`, along with `@Configuration` and `@ComponentScan`. Essentially:
+
+- `@EnableAutoConfiguration` handles auto-configuration.
+- `@SpringBootApplication` adds component scanning and bean definition capabilities.
+
+You use `@SpringBootApplication` on your main class for a full setup, while `@EnableAutoConfiguration` is narrower, focusing only on auto-config.  
+Example:
+
+```java
+@SpringBootApplication // Includes @EnableAutoConfiguration
+public class MyApp {
+    public static void main(String[] args) {
+        SpringApplication.run(MyApp.class, args);
+    }
+}
+```
+
+---
+
+#### 3\. Difference Between `@Component`, `@Repository`, `@Service` Annotations
+
+These are all stereotypes for marking beans, but they have specific roles:
+
+- `@Component`: General-purpose annotation for any Spring-managed bean.
+- `@Repository`: Marks a data access layer bean (e.g., DAO); adds exception translation for persistence errors.
+- `@Service`: Marks a business logic layer bean; indicates it holds service-level operations.
+
+Example:
+
+```java
+@Component
+class GenericBean {}
+
+@Repository
+class UserRepository {}
+
+@Service
+class UserService {}
+```
+
+They help Spring identify bean roles and apply appropriate behavior (e.g., persistence exception handling for `@Repository`).
+
+---
+
+#### 4\. How Spring Boot Supports Asynchronous Processing
+
+Spring Boot supports async processing with the `@EnableAsync` annotation and `@Async` on methods:
+
+- Add `@EnableAsync` to a configuration class.
+- Mark methods with `@Async` to run them in a separate thread.
+
+Example:
+
+```java
+@Configuration
+@EnableAsync
+public class AsyncConfig {}
+
+@Service
+public class MyService {
+    @Async
+    public CompletableFuture<String> doWork() {
+        Thread.sleep(1000); // Simulate work
+        return CompletableFuture.completedFuture("Done");
+    }
+}
+```
+
+Spring uses a `TaskExecutor` (default: `SimpleAsyncTaskExecutor`) to manage threads. You can customize it with a `ThreadPoolTaskExecutor`.
+
+---
+
+#### 5\. Significance of Spring Boot’s `@Conditional` Annotations
+
+`@Conditional` annotations control whether a bean or configuration is created based on conditions.  
+Examples:
+
+- `@ConditionalOnClass`: Applies if a class is present (e.g., HikariCP for database config).
+- `@ConditionalOnProperty`: Applies if a property exists or has a specific value.
+
+Example:
+
+```java
+@Configuration
+@ConditionalOnProperty(name = "feature.enabled", havingValue = "true")
+public class FeatureConfig {
+    @Bean
+    public MyFeature myFeature() {
+        return new MyFeature();
+    }
+}
+```
+
+This makes auto-configuration flexible and context-aware.
+
+---
+
+#### 6\. How Spring Boot Handles Logging
+
+Spring Boot uses **SLF4J with Logback** as the default logging framework:
+
+- Configured via `application.properties` (e.g., `logging.level.org.springframework=DEBUG`)
+- Supports log levels (TRACE, DEBUG, INFO, etc.)
+- Logs to console by default; can be redirected to files
+
+Example:
+
+```properties
+logging.level.com.myapp=INFO
+logging.file.name=app.log
+```
+
+You can also use other frameworks (e.g., Log4j2) by excluding Logback and adding the desired dependency.
+
+---
+
+#### 7\. CSRF Protection in Spring Security and How to Disable It
+
+CSRF (Cross-Site Request Forgery) protection is enabled by default in Spring Security for state-changing requests (e.g., POST). It uses a token to validate requests.  
+To disable it:
+
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable(); // Disables CSRF
+    }
+}
+```
+
+> Disable it only for stateless APIs (e.g., REST with JWT), not form-based apps.
+
+---
+
+#### 8\. Purpose of `SecurityContextHolder` in Spring Security
+
+`SecurityContextHolder` stores the current user’s security context (e.g., authentication details) in a thread-local variable.  
+It provides access to the authenticated user via:
+
+```java
+Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+String username = auth.getName(); // Logged-in user
+```
+
+It’s central to Spring Security’s authentication and authorization flow.
+
+---
+
+#### 9\. Benefits of Spring Boot’s Actuator Endpoints
+
+**Actuator** provides production-ready endpoints to monitor and manage your app:
+
+- `/health`: Checks app status.
+- `/metrics`: Exposes performance metrics.
+- `/info`: Displays custom app info.
+
+**Benefits**:
+
+- Real-time monitoring
+- Easy integration with tools like Prometheus
+- Helps debug production issues
+
+Enable it with `spring-boot-starter-actuator` and configure via `application.properties`:
+
+```properties
+management.endpoints.web.exposure.include=health,metrics
+```
+
+---
+
+#### 10\. How Spring Boot’s `@Value` Annotation Works
+
+`@Value` injects values from properties files, environment variables, or defaults into fields or parameters.  
+Example:
+
+```java
+@Service
+public class MyService {
+    @Value("${app.name:DefaultApp}")
+    private String appName; // From application.properties or default to "DefaultApp"
+}
+```
+
+In `application.properties`:
+
+```properties
+app.name=MyApp
+```
+
+---
+
+#### 11\. Spring Boot’s `WebClient` vs. `RestTemplate`
+
+**RestTemplate**:
+
+- Older, synchronous HTTP client.
+- Simple but blocking; less suited for reactive apps.
+
+```java
+RestTemplate rest = new RestTemplate();
+String result = rest.getForObject("https://api.example.com", String.class);
+```
+
+**WebClient**:
+
+- Modern, non-blocking, reactive client (part of Spring WebFlux).
+- Better for high-concurrency apps.
+
+```java
+WebClient client = WebClient.create();
+String result = client.get().uri("https://api.example.com").retrieve().bodyToMono(String.class).block();
+```
+
+> Use WebClient for reactive or performance-critical apps; RestTemplate for simpler cases.
+
+---
+
+#### 12\. How Spring Manages Circular Dependencies
+
+Spring resolves circular dependencies (e.g., Bean A needs Bean B, and B needs A) during bean creation:
+
+- Uses setter injection or constructor injection with proxies.
+- Creates a proxy for one bean, allowing the other to reference it before full initialization.
+
+Example:
+
+```java
+@Component
+public class A {
+    @Autowired
+    private B b;
+}
+
+@Component
+public class B {
+    @Autowired
+    private A a;
+}
+```
+
+Avoid tight coupling where possible; Spring handles it but it’s a design smell.
+
+---
+
+#### 13\. Role of `@Primary`, `@Qualifier`, `@Profile` in Bean Selection
+
+- `@Primary`: Marks a bean as the default choice when multiple beans of the same type exist.
+- `@Qualifier`: Specifies which bean to inject by name when multiple exist.
+- `@Profile`: Activates a bean only for a specific profile (e.g., “dev”).
+
+Example:
+
+```java
+@Bean @Primary
+public DataSource primaryDs() { return new HikariDataSource(); }
+
+@Bean @Qualifier("secondary")
+public DataSource secondaryDs() { return new HikariDataSource(); }
+
+@Bean @Profile("dev")
+public String devBean() { return "Dev"; }
+```
+
+---
+
+#### 14\. Difference Between `@Bean` and `@Component`
+
+- `@Bean`: Used in `@Configuration` classes to manually define a bean; gives full control over creation.
+- `@Component`: Automatically detected via component scanning; simpler for standard classes.
+
+Example:
+
+```java
+@Configuration
+public class Config {
+    @Bean
+    public MyBean myBean() { return new MyBean(); }
+}
+
+@Component
+public class AutoBean {}
+```
+
+---
+
+#### 15\. Circuit Breaker and Implementation in Spring Boot
+
+A **Circuit Breaker** prevents cascading failures in distributed systems by stopping calls to a failing service.  
+Implement it with **Resilience4j**:
+
+1.  Add `spring-boot-starter-resilience4j`.
+
+Example:
+
+```java
+@Service
+public class MyService {
+    @CircuitBreaker(name = "myService", fallbackMethod = "fallback")
+    public String callApi() {
+        // API call that might fail
+    }
+
+    public String fallback(Throwable t) {
+        return "Fallback response";
+    }
+}
+```
+
+Configuration:
+
+```properties
+resilience4j.circuitbreaker.instances.myService.failure-rate-threshold=50
+```
+
+---
+
+#### 16\. Secure Spring Boot REST APIs Using OAuth2 with Google
+
+**Steps**:
+
+1.  Add `spring-boot-starter-oauth2-client`.
+2.  Configure in `application.properties`:
+
+```properties
+spring.security.oauth2.client.registration.google.client-id=YOUR_CLIENT_ID
+spring.security.oauth2.client.registration.google.client-secret=YOUR_SECRET
+spring.security.oauth2.client.registration.google.scope=openid,email,profile
+```
+
+Secure endpoints:
+
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+            .antMatchers("/api/**").authenticated()
+            .and().oauth2Login();
+    }
+}
+```
+
+Access token via `OAuth2AuthenticationToken` in controllers.
+
+---
+
+#### 17\. Purpose of `@DataJpaTest` in Spring Boot
+
+`@DataJpaTest` is for testing JPA repositories:
+
+- Loads only JPA-related beans (not the full app context).
+- Configures an in-memory database (e.g., H2).
+
+Example:
+
+```java
+@DataJpaTest
+class UserRepositoryTest {
+    @Autowired
+    private UserRepository repo;
+
+    @Test
+    void testFindById() {
+        assertNotNull(repo.findById(1L));
+    }
+}
+```
+
+---
+
+#### 18\. What are `@ConfigurationProperties` in Spring Boot
+
+`@ConfigurationProperties` binds external properties to a Java object.
+
+Example:
+
+```java
+@ConfigurationProperties(prefix = "app")
+public class AppConfig {
+    private String name;
+    // Getters and setters
+}
+```
+
+In `application.properties`:
+
+```properties
+app.name=MyApp
+```
+
+Enable with `@EnableConfigurationProperties(AppConfig.class)`.
+
+---
+
+#### 19\. How Spring Boot Handles Caching and Caching Annotations
+
+Spring Boot supports caching with `@EnableCaching` and annotations:
+
+- `@Cacheable`: Caches method results.
+- `@CachePut`: Updates cache.
+- `@CacheEvict`: Removes cache entries.
+
+Example:
+
+```java
+@Service
+@Cacheable("users")
+public User getUser(int id) {
+    return userRepository.findById(id);
+}
+```
+
+Add `spring-boot-starter-cache` and a cache provider (e.g., Ehcache).
+
+---
+
+#### 20\. Different Scopes of Spring Beans
+
+Spring beans have these scopes:
+
+- `singleton`: One instance per context (default).
+- `prototype`: New instance per request.
+- `request`: One per HTTP request (web only).
+- `session`: One per HTTP session (web only).
+- `application`: One per `ServletContext` (web only).
+
+Example:
+
+```java
+@Bean @Scope("prototype")
+public MyBean myBean() { return new MyBean(); }
+```
+
+---
+
+### 🧠 Well-Explained Answers for 3–4 Years of Experience
+
+For developers with 3-4 years of experience, the focus shifts toward advanced configuration, introspection, and a deeper understanding of Spring Boot’s internals. These answers provide detailed explanations, practical examples, and insights into real-world usage, tailored to this experience level.
+
+---
+
+#### 1\. What is Spring Boot Actuator?
+
+Spring Boot Actuator is a production-ready feature that provides endpoints to monitor and manage your application. It exposes information like:
+
+- Health status (`/actuator/health`).
+- Application metrics (`/actuator/metrics`).
+- Environment details (`/actuator/env`).
+- Bean info, logging levels, and more.
+
+It’s invaluable for debugging, monitoring, and integrating with tools like **Prometheus** or **Grafana**. Actuator is part of Spring Boot’s “production-ready” philosophy, giving you visibility into your app’s runtime behavior.
+
+---
+
+#### 2\. How to Enable Actuator in the Spring Boot Application?
+
+To enable Actuator:
+
+#### Add the dependency in `pom.xml` (Maven):
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
+
+#### Configure exposed endpoints in `application.properties`:
+
+```properties
+management.endpoints.web.exposure.include=health,metrics,info
+management.endpoint.health.show-details=always
+```
+
+Start your app, and access endpoints like `http://localhost:8080/actuator/health`.  
+By default, only `/health` and `/info` are exposed; customize exposure as needed for security.
+
+---
+
+#### 3\. What is the Purpose of Using `@ComponentScan` in Class Files?
+
+`@ComponentScan` tells Spring to scan specific packages for classes annotated with `@Component`, `@Service`, `@Repository`, `@Controller`, etc., and register them as beans.
+
+It’s useful when:
+
+- Your beans are outside the main application package.
+- You need to customize the scanning scope.
+
+#### Example:
+
+```java
+@SpringBootApplication
+@ComponentScan(basePackages = {"com.myapp.services", "com.myapp.controllers"})
+public class MyApp {
+    public static void main(String[] args) {
+        SpringApplication.run(MyApp.class, args);
+    }
+}
+```
+
+Without it, Spring Boot scans only the package of the `@SpringBootApplication` class and its sub-packages.
+
+---
+
+#### 4\. What are the `@RequestMapping` and `@RestController` Annotations Used For?
+
+#### `@RequestMapping`:
+
+Maps HTTP requests to specific methods or classes. It supports all HTTP methods (GET, POST, etc.) and can specify paths, headers, or parameters.
+
+##### Example:
+
+```java
+@RequestMapping(value = "/hello", method = RequestMethod.GET)
+public String sayHello() {
+    return "Hello!";
+}
+```
+
+#### `@RestController`:
+
+A specialized `@Controller` that marks a class as a RESTful controller, automatically serializing return values (e.g., to JSON) using `@ResponseBody`.
+
+##### Example:
+
+```java
+@RestController
+public class MyController {
+    @RequestMapping("/greet")
+    public String greet() {
+        return "Hi!";
+    }
+}
+```
+
+Together, they define REST API endpoints.
+
+---
+
+#### 5\. How to Get the List of All the Beans in Your Spring Boot Application?
+
+You can introspect the Spring context to list all beans:
+
+#### Inject `ApplicationContext` and use `getBeanDefinitionNames()`:
+
+```java
+@SpringBootApplication
+public class MyApp implements CommandLineRunner {
+    @Autowired
+    private ApplicationContext context;
+
+    public static void main(String[] args) {
+        SpringApplication.run(MyApp.class, args);
+    }
+
+    @Override
+    public void run(String... args) {
+        String[] beanNames = context.getBeanDefinitionNames();
+        Arrays.sort(beanNames);
+        for (String beanName : beanNames) {
+            System.out.println(beanName);
+        }
+    }
+}
+```
+
+Alternatively, use Actuator’s `/actuator/beans` endpoint (enable with `management.endpoints.web.exposure.include=beans`).  
+This is useful for debugging or understanding your app’s structure.
+
+---
+
+#### 6\. Can We Check the Environment Properties in Your Spring Boot Application? Explain How.
+
+Yes, you can access environment properties via:
+
+#### Injecting `Environment`:
+
+```java
+@Autowired
+private Environment env;
+
+public void printProperties() {
+    System.out.println(env.getProperty("server.port"));
+    // Access specific property
+}
+```
+
+#### Using Actuator:
+
+Enable `/actuator/env` to see all properties:
+
+```properties
+management.endpoints.web.exposure.include=env
+```
+
+#### Command Line:
+
+Use `ConfigurableEnvironment` in `ApplicationContext`:
+
+```java
+@Autowired
+private ConfigurableApplicationContext context;
+
+public void showEnv() {
+    ConfigurableEnvironment env = context.getEnvironment();
+    System.out.println(env.getProperty("spring.datasource.url"));
+}
+```
+
+This helps verify runtime configuration (e.g., from `application.properties` or system variables).
+
+---
+
+#### 7\. How to Enable Debugging Logs in the Spring Boot Application?
+
+Spring Boot uses SLF4J with Logback by default. To enable debug logs:
+
+#### In `application.properties`:
+
+```properties
+logging.level.root=DEBUG             # All logs
+logging.level.org.springframework=DEBUG  # Spring-specific logs
+```
+
+#### Programmatically:
+
+```java
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+
+@PostConstruct
+public void init() {
+    Logger root = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+    root.setLevel(Level.DEBUG);
+}
+```
+
+#### Via Actuator:
+
+Adjust log levels at runtime with `/actuator/loggers` (enable it first).  
+Debug logs are verbose, so use them selectively for troubleshooting.
+
+---
+
+#### 8\. What is Dependency Injection and Its Types?
+
+**Dependency Injection (DI)** is a design pattern where dependencies are provided to a class instead of the class creating them. Spring implements DI via its **IoC container**.
+
+#### Types:
+
+**Constructor Injection**: Dependencies passed via constructor.
+
+```java
+@Component
+public class MyService {
+    private final MyRepo repo;
+
+    @Autowired
+    public MyService(MyRepo repo) {
+        this.repo = repo;
+    }
+}
+```
+
+**Setter Injection**: Dependencies set via setters.
+
+```java
+@Component
+public class MyService {
+    private MyRepo repo;
+
+    @Autowired
+    public void setRepo(MyRepo repo) {
+        this.repo = repo;
+    }
+}
+```
+
+**Field Injection**: Dependencies injected directly into fields (less recommended).
+
+```java
+@Component
+public class MyService {
+    @Autowired
+    private MyRepo repo;
+}
+```
+
+> Constructor injection is preferred for **immutability** and **testability**.
+
+---
+
+#### 9\. What is an IoC Container?
+
+The **Inversion of Control (IoC) Container** is Spring’s core mechanism for managing beans. It:
+
+- Creates, configures, and wires objects (beans) based on annotations or configuration.
+- Inverts control from the application code to the framework (you declare dependencies, Spring provides them).
+
+#### Key components:
+
+- `ApplicationContext`: The main IoC container interface.
+- `BeanFactory`: A simpler predecessor.
+
+##### Example:
+
+```java
+ApplicationContext context = new AnnotationConfigApplicationContext(MyConfig.class);
+MyService service = context.getBean(MyService.class);
+```
+
+It handles bean lifecycle, DI, and scope management.
+
+---
+
+#### 10\. What is the Difference Between Constructor and Setter Injection?
+
+**Constructor Injection**:
+
+- Dependencies are passed via the constructor.
+- Ensures immutability (fields can be `final`).
+- Better for mandatory dependencies.
+
+##### Example:
+
+```java
+@Component
+public class MyService {
+    private final MyRepo repo;
+
+    @Autowired
+    public MyService(MyRepo repo) {
+        this.repo = repo;
+    }
+}
+```
+
+**Setter Injection**:
+
+- Dependencies are set via setter methods.
+- Allows flexibility (dependencies can change at runtime).
+- Better for optional dependencies.
+
+##### Example:
+
+```java
+@Component
+public class MyService {
+    private MyRepo repo;
+
+    @Autowired
+    public void setRepo(MyRepo repo) {
+        this.repo = repo;
+    }
+}
+```
+
+> Constructor is favored for **cleaner design**; setter is useful for **optional** or **circular** dependencies.
+
+---
+
+### 🧠 Well-Explained Answers for 4+ Years of Experience
+
+#### 1\. Optimizing Spring Boot Startup Time in Production
+
+Spring Boot’s startup time can be a bottleneck in production, especially for microservices. Optimization strategies include:
+
+- **Reduce Component Scanning**: Limit `@ComponentScan` to specific packages instead of scanning everything.
+
+  ```java
+  @SpringBootApplication
+  @ComponentScan(basePackages = "com.myapp.core")
+  public class MyApp {}
+  ```
+
+- **Lazy Initialization**: Enable lazy bean loading with `spring.main.lazy-initialization=true` in `application.properties`. Be cautious of runtime delays for first requests.
+- **AOT Compilation**: Use Spring Boot 3’s Ahead-of-Time (AOT) compilation with GraalVM to create native images, reducing startup time significantly.
+- **Minimize Dependencies**: Avoid unnecessary starters or libraries; use tools like `mvn dependency:tree` to audit.
+- **Profile-Specific Beans**: Use `@Profile` to load only necessary beans per environment.
+- **Custom Context**: Pre-configure `ApplicationContext` with only required beans for specific use cases. In a microservices setup, shaving seconds off startup can improve deployment and scaling efficiency.
+
+---
+
+#### 2\. Spring Boot’s @ConfigurationProperties with Complex Objects
+
+`@ConfigurationProperties` binds nested or complex properties to POJOs. Example:
+
+```java
+@ConfigurationProperties(prefix = "app.database")
+public class DatabaseConfig {
+    private String url;
+    private Credentials credentials;
+
+    // Getters, setters
+    public static class Credentials {
+        private String username;
+        private String password;
+        // Getters, setters
+    }
+}
+```
+
+In `application.yml`:
+
+```yaml
+app:
+  database:
+    url: jdbc:mysql://localhost:3306/db
+    credentials:
+      username: admin
+      password: secret
+```
+
+Enable with:
+
+```java
+@Configuration
+@EnableConfigurationProperties(DatabaseConfig.class)
+public class AppConfig {}
+```
+
+- **Validation**: Add `@Validated` and JSR-303 annotations (e.g., `@NotNull`).
+- **Type Safety**: Use `List<>` or `Map<>` for collections.
+- **Best Practice**: Keep objects immutable with constructors and use Lombok (`@Data`).
+
+---
+
+#### 3\. Distributed Tracing Challenges and Implementation in Microservices
+
+**Challenges**:
+
+- Tracking requests across services.
+- Latency attribution.
+- Correlation ID propagation.
+
+**Implementation**: Use Spring Cloud Sleuth and Zipkin:
+
+Add dependencies:
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-sleuth</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-zipkin</artifactId>
+</dependency>
+```
+
+Configure Zipkin server (e.g., `spring.zipkin.base-url=http://localhost:9411`).
+
+- Sleuth auto-adds trace and span IDs to logs and HTTP headers.
+- View traces in Zipkin UI.
+
+**Considerations**:
+
+- Sampling rate (`spring.sleuth.sampler.probability=1.0` for full tracing).
+- Integrate with logging (`%X{traceId}` in log patterns).
+- Use OpenTelemetry for broader compatibility.
+
+---
+
+#### 4\. Implementing Robust Custom Health Check with Actuator
+
+Custom health checks extend Actuator’s `/actuator/health`:
+
+```java
+@Component
+public class DatabaseHealthIndicator implements HealthIndicator {
+    @Autowired
+    private DataSource dataSource;
+
+    @Override
+    public Health health() {
+        try (Connection conn = dataSource.getConnection()) {
+            return Health.up().withDetail("database", "reachable").build();
+        } catch (SQLException e) {
+            return Health.down().withDetail("error", e.getMessage()).build();
+        }
+    }
+}
+```
+
+- **Expose**: Enable via `management.endpoints.web.exposure.include=health`.
+- **Details**: Add `management.endpoint.health.show-details=always`.
+- **Aggregation**: Combine multiple indicators for a composite health status. This ensures production readiness by monitoring critical dependencies.
+
+---
+
+#### 5\. Handling Service Discovery in Microservices with Eureka
+
+**Eureka** enables dynamic service registration and discovery.
+
+**Add Eureka Server**:
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+</dependency>
+```
+
+```java
+@SpringBootApplication
+@EnableEurekaServer
+public class EurekaServer {}
+```
+
+**Configure Client**:
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+</dependency>
+```
+
+```properties
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+spring.application.name=my-service
+```
+
+Use `DiscoveryClient` or `@LoadBalanced RestTemplate` to call services.  
+**Benefits**: Auto-scaling, fault tolerance, and load balancing.
+
+---
+
+#### 6\. Spring Boot’s @Retryable Annotation for Microservices Reliability
+
+`@Retryable` retries failed operations:
+
+```java
+@Service
+public class MyService {
+    @Retryable(value = {HttpServerErrorException.class}, maxAttempts = 3, backoff = @Backoff(delay = 1000))
+    public String callExternalApi() {
+        // API call that might fail
+        return restTemplate.getForObject("http://external-api", String.class);
+    }
+
+    @Recover
+    public String recover(HttpServerErrorException e) {
+        return "Fallback response";
+    }
+}
+```
+
+- **Enable** with `@EnableRetry`.
+- **Configure** retries, backoff, and exceptions.
+- Use `@Recover` for fallback logic. Ideal for transient failures in microservices (e.g., network issues).
+
+---
+
+#### 7\. Implementing Custom Security Policies with Spring Security
+
+Custom policies with Spring Security:
+
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+            .antMatchers("/admin/**").hasRole("ADMIN")
+            .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+            .anyRequest().authenticated()
+            .and()
+            .formLogin()
+            .and()
+            .exceptionHandling().accessDeniedHandler((req, res, ex) -> res.sendError(HttpStatus.FORBIDDEN.value()));
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        // Custom user lookup logic
+        return username -> new User(username, "{noop}password", AuthorityUtils.createAuthorityList("ROLE_USER"));
+    }
+}
+```
+
+- **Customization**: Add custom `AuthenticationProvider` or `UserDetailsService`.
+- **Filters**: Inject custom filters for advanced logic (e.g., IP whitelisting).
+
+---
+
+#### 8\. Event-Driven Microservices with Kafka or RabbitMQ
+
+**Using Kafka with Spring Boot**:
+
+**Add dependency**:
+
+```xml
+<dependency>
+    <groupId>org.springframework.kafka</groupId>
+    <artifactId>spring-kafka</artifactId>
+</dependency>
+```
+
+**Configure**:
+
+```properties
+spring.kafka.bootstrap-servers=localhost:9092
+spring.kafka.consumer.group-id=my-group
+```
+
+**Producer/Consumer**:
+
+```java
+@Service
+public class KafkaService {
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+
+    public void send(String message) {
+        kafkaTemplate.send("my-topic", message);
+    }
+
+    @KafkaListener(topics = "my-topic")
+    public void listen(String message) {
+        System.out.println("Received: " + message);
+    }
+}
+```
+
+**RabbitMQ**: Similar setup with `spring-rabbit` and `@RabbitListener`.  
+**Use Case**: Decouple services, handle high-throughput events.
+
+---
+
+#### 9\. Handling Versioning in Spring Boot APIs
+
+**Versioning strategies**:
+
+- **URI Versioning**:
+
+  ```java
+  @RestController
+  @RequestMapping("/api/v1")
+  public class ApiV1Controller {
+      @GetMapping("/data")
+      public String getData() { return "Version 1"; }
+  }
+  ```
+
+- **Header Versioning**:
+
+  ```java
+  @GetMapping(value = "/data", headers = "X-API-Version=1")
+  public String getV1Data() { return "Version 1"; }
+  ```
+
+- **Media Type Versioning**:
+
+  ```java
+  @GetMapping(value = "/data", produces = "application/vnd.myapp.v1+json")
+  public String getV1() { return "Version 1"; }
+  ```
+
+**Best Practice**: Use URI versioning for simplicity; document with OpenAPI/Swagger.
+
+---
+
+#### 10\. Implementing Multi-Tenancy in Spring Boot Applications
+
+**Multi-tenancy** separates data by tenant.
+
+- **Database Per Tenant**:  
+  Use `AbstractRoutingDataSource` to switch datasources:
+
+  ```java
+  public class TenantRoutingDataSource extends AbstractRoutingDataSource {
+      @Override
+      protected Object determineCurrentLookupKey() {
+          return TenantContext.getTenantId(); // ThreadLocal tenant ID
+      }
+  }
+  ```
+
+- **Schema Per Tenant**:  
+  Set schema dynamically in JPA:
+
+  ```properties
+  spring.jpa.properties.hibernate.default_schema={tenantId}
+  ```
+
+**Configure tenant resolution** (e.g., via header):
+
+```java
+@Component
+public class TenantFilter implements Filter {
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+        String tenantId = ((HttpServletRequest) req).getHeader("X-Tenant-ID");
+        TenantContext.setTenantId(tenantId);
+        chain.doFilter(req, res);
+    }
+}
+```
+
+**Security**: Enforce tenant isolation in business logic.
+
+---
+
+#### 11\. Creating a Custom Spring Boot Starter Module
+
+**Steps:**
+
+**Create a library project:**
+
+```xml
+<groupId>com.myapp</groupId>
+<artifactId>my-starter</artifactId>
+```
+
+**Define auto-configuration:**
+
+```java
+@Configuration
+@ConditionalOnClass(MyService.class)
+public class MyAutoConfiguration {
+    @Bean
+    public MyService myService() {
+        return new MyService();
+    }
+}
+```
+
+**Register in META-INF/spring.factories:**
+
+```
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.myapp.MyAutoConfiguration
+```
+
+**Publish to Maven; use in another project:**
+
+```xml
+<dependency>
+    <groupId>com.myapp</groupId>
+    <artifactId>my-starter</artifactId>
+</dependency>
+```
+
+**Benefit:** Reusable, modular functionality.
+
+---
+
+#### 12\. Managing External Configurations Across Environments
+
+**Use Spring Cloud Config:**
+
+**Setup Config Server:**
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-config-server</artifactId>
+</dependency>
+```
+
+```java
+@EnableConfigServer
+@SpringBootApplication
+public class ConfigServer {}
+```
+
+**Store configs in Git:**  
+`application-dev.yml`, `application-prod.yml`
+
+**Client setup:**
+
+```properties
+spring.cloud.config.uri=http://localhost:8888
+spring.profiles.active=dev
+```
+
+**Alternatives:** Vault, Kubernetes ConfigMaps.  
+**Security:** Encrypt sensitive properties with `{cipher}`.
+
+---
+
+#### 13\. Strategies for Debugging Spring Boot in Production
+
+- **Actuator:** Use `/actuator/loggers`, `/actuator/heapdump`, `/actuator/threaddump`.
+- **Remote Debugging:** Enable JVM debug port `(-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005)` and connect via IDE.
+- **Logging:** Increase verbosity dynamically with `/actuator/loggers`.
+- **Distributed Tracing:** Use Sleuth/Zipkin to trace requests.
+- **Metrics:** Monitor with Prometheus and Grafana via Actuator.
+- **Best Practice:** Minimize downtime; use rolling deployments.
+
+---
+
+#### 14\. Implementing Spring Boot Security with OAuth 2.0 for Microservices
+
+**Steps:**
+
+**Add dependency:**
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+</dependency>
+```
+
+**Configure:**
+
+```properties
+spring.security.oauth2.resourceserver.jwt.issuer-uri=https://auth-server/.well-known/openid-configuration
+```
+
+**Secure endpoints:**
+
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+            .anyRequest().authenticated()
+            .and()
+            .oauth2ResourceServer().jwt();
+    }
+}
+```
+
+**Token Validation:** Use JWKs endpoint from the issuer.  
+**Scopes:** Restrict with `.access("#oauth2.hasScope('read')")`.
+
+---
+
+#### 15\. Common Performance Bottlenecks and Resolutions
+
+- **Database Queries:** Optimize with indexes, caching (`@Cacheable`), or batching.
+- **Bean Creation:** Use lazy initialization or reduce scope.
+- **Thread Pool Exhaustion:** Tune `@Async` executor (`ThreadPoolTaskExecutor`).
+- **Memory Leaks:** Profile with Actuator or VisualVM; avoid large object retention.
+- **I/O Blocking:** Switch to WebClient for non-blocking calls.
+- **Resolution:** Use metrics (`/actuator/metrics`) to identify and fix.
+
+---
+
+#### 16\. Handling Asynchronous Processing with @Async
+
+**Enable with `@EnableAsync`:**
+
+```java
+@Service
+public class MyService {
+    @Async
+    public CompletableFuture<String> process() {
+        Thread.sleep(1000); // Simulate work
+        return CompletableFuture.completedFuture("Done");
+    }
+}
+```
+
+**Custom Executor:**
+
+```java
+@Bean
+public Executor taskExecutor() {
+    ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+    executor.setCorePoolSize(10);
+    executor.setMaxPoolSize(20);
+    return executor;
+}
+```
+
+**Error Handling:** Use `AsyncUncaughtExceptionHandler`.
+
+---
+
+#### 17\. Implementing Caching with @Cacheable
+
+**Enable with `@EnableCaching`:**
+
+```java
+@Service
+public class MyService {
+    @Cacheable(value = "users", key = "#id")
+    public User getUser(int id) {
+        return userRepository.findById(id); // Expensive call
+    }
+
+    @CacheEvict(value = "users", key = "#id")
+    public void deleteUser(int id) {}
+}
+```
+
+**Add** `spring-boot-starter-cache` **and a provider (e.g., Caffeine, Ehcache).**  
+**Customization:** Configure cache manager for eviction policies.
+
+---
+
+#### 18\. Configuring and Managing Spring Boot Logging in Production
+
+**Use Logback:**
+
+```properties
+logging.level.root=INFO
+logging.level.com.myapp=DEBUG
+logging.file.name=/var/log/myapp.log
+logging.pattern.file=%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+```
+
+- **Dynamic Changes:** Adjust via Actuator’s `/actuator/loggers`.
+- **Centralized Logging:** Forward to ELK or Loki with `spring-boot-starter-logging`.
+
+---
+
+#### 19\. Implementing API Gateway with Spring Cloud Gateway
+
+**Add dependency:**
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-gateway</artifactId>
+</dependency>
+```
+
+**Configure routes:**
+
+```yaml
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/users/**
+```
+
+- **Load Balancing:** Integrate with Eureka (`lb://`).
+- **Filters:** Add rate-limiting, retries, or security.
+
+---
+
+#### 20\. Handling Transactions with @Transactional
+
+```java
+@Service
+public class MyService {
+    @Transactional(rollbackOn = Exception.class)
+    public void saveData() {
+        // Multiple DB operations
+    }
+}
+```
+
+- **Isolation:** Use `isolation = Isolation.SERIALIZABLE` for strict control.
+- **Propagation:** Default is `REQUIRED`; adjust as needed (e.g., `NESTED`).
+
+---
+
+#### 21\. Differences Between @RequestMapping, @GetMapping, @PostMapping, etc.
+
+- `@RequestMapping`: Generic, supports all HTTP methods.
+- `@GetMapping`: Shortcut for GET requests.
+- `@PostMapping`: Shortcut for POST requests. Example:
+
+```java
+@RequestMapping(value = "/data", method = RequestMethod.GET)
+public String getData() {}
+
+@GetMapping("/data")
+public String getDataShorter() {}
+```
+
+---
+
+#### 22\. Implementing File Upload and Download Functionality
+
+**Upload:**
+
+```java
+@RestController
+public class FileController {
+    @PostMapping("/upload")
+    public ResponseEntity<String> upload(@RequestParam("file") MultipartFile file) {
+        Files.write(Paths.get("uploads/" + file.getOriginalFilename()), file.getBytes());
+        return ResponseEntity.ok("Uploaded");
+    }
+}
+```
+
+**Download:**
+
+```java
+@GetMapping("/download/{filename}")
+public ResponseEntity<Resource> download(@PathVariable String filename) {
+    File file = new File("uploads/" + filename);
+    return ResponseEntity.ok()
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+        .body(new FileSystemResource(file));
+}
+```
+
+---
+
+#### 23\. Using Spring Boot Profiles for Different Environments
+
+```properties
+spring.profiles.active=prod
+```
+
+**application-dev.properties:**
+
+```properties
+server.port=8081
+```
+
+**Activate programmatically:**
+
+```java
+SpringApplication app = new SpringApplication(MyApp.class);
+app.setAdditionalProfiles("dev");
+app.run(args);
+```
+
+---
+
+#### 24\. Implementing JWT-Based Authentication
+
+- Add `jjwt` dependency.
+- Configure filter:
+
+```java
+public class JwtFilter extends OncePerRequestFilter {
+    @Override
+    protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain) {
+        String token = req.getHeader("Authorization");
+        // Validate JWT
+        chain.doFilter(req, res);
+    }
+}
+```
+
+- Secure endpoints with Spring Security.
+
+---
+
+#### 25\. Configuring Spring Boot with Docker for Containerization
+
+**Dockerfile:**
+
+```dockerfile
+FROM openjdk:17
+COPY target/myapp.jar /app.jar
+ENTRYPOINT ["java", "-jar", "/app.jar"]
+```
+
+**Build and run:**
+
+```bash
+docker build -t myapp .
+docker run -p 8080:8080 myapp
+```
+
+---
+
+#### 26\. Implementing Rate-Limiting in Spring Boot
+
+**Use Resilience4j:**
+
+```java
+@Service
+public class MyService {
+    @RateLimiter(name = "myRateLimiter")
+    public String call() {
+        return "Success";
+    }
+}
+```
+
+```properties
+resilience4j.ratelimiter.instances.myRateLimiter.limit-for-period=10
+resilience4j.ratelimiter.limit-refresh-period=1s
+```
+
+---
+
+#### 27\. Implementing Custom Exception Handler with @ControllerAdvice
+
+```java
+@ControllerAdvice
+public class GlobalExceptionHandler {
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgument(Exception ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+}
+```
+
+---
+
+#### 28\. Using @Scheduled Annotation for Background Tasks
+
+```java
+@Service
+public class TaskService {
+    @Scheduled(fixedRate = 60000) // Every minute
+    public void runTask() {
+        System.out.println("Task executed at " + new Date());
+    }
+}
+```
+
+- Enable with `@EnableScheduling`.
+
+---
+
+#### 29\. Implementing Spring Boot with NoSQL Databases like MongoDB, Cassandra
+
+**For MongoDB:**
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-mongodb</artifactId>
+</dependency>
+```
+
+```java
+@Document
+public class User {
+    @Id
+    private String id;
+    private String name;
+}
+```
+
+```properties
+spring.data.mongodb.uri=mongodb://localhost:27017/mydb
+```
+
+---
+
+#### 30\. Configuring Spring Boot with Message Queues like RabbitMQ, Kafka
+
+**For RabbitMQ:**
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-amqp</artifactId>
+</dependency>
+```
+
+```java
+@Service
+public class RabbitService {
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    public void send(String message) {
+        rabbitTemplate.convertAndSend("my-queue", message);
+    }
+
+    @RabbitListener(queues = "my-queue")
+    public void receive(String message) {
+        System.out.println("Received: " + message);
+    }
+}
+```
+
+```properties
+spring.rabbitmq.host=localhost
+spring.rabbitmq.port=5672
+```
+
+---
+
+## Additional Questions & Answers
+
 ## 3+ YOE SpringBoot Questions
 
 1. Explain the concept of auto-configuration in Spring Boot.

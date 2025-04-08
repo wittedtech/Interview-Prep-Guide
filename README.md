@@ -62,7 +62,7 @@ Content of this repository are continuously updated by [@wittedtech || Harshit S
 
 ---
 
-**Puropose :** To Make Fellow Developers prepare for their interviews seamlessly and easily. Helping and Building a community of smart and helping deveelopers.
+**Purpose :** To Make Fellow Developers prepare for their interviews seamlessly and easily. Helping and Building a community of smart and helping developers.
 
 ---
 

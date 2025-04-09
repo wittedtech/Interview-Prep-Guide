@@ -54,6 +54,7 @@
   - [General-Basic-Java](./Topic-Wise-Prep/General-Java.md)
   - [Object Oriented Programming (OOPs) Concepts](./Topic-Wise-Prep/OOPs-Concepts.md)
   - [Spring Boot](./Topic-Wise-Prep/Spring-Boot.md)
+  - [Hibernate](./Topic-Wise-Prep/Hibernate.md)
   - [Java New Versions and Features](./Topic-Wise-Prep/Java-New-Versions-Features.md)
 
 ---

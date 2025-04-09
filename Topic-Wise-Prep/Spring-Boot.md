@@ -293,13 +293,11 @@
 
 ---
 
----
-
----
-
----
-
-## Comprehensive Guide to Important Spring Boot Annotations
+<details>
+<summary>
+<b>
+Comprehensive Guide to Important Spring Boot Annotations
+</b></summary>
 
 ### 1. Core Spring Annotations
 
@@ -1141,6 +1139,424 @@
   ```
 
 This comprehensive guide covers the most important annotations in Spring Boot and provides examples of how to use them effectively. The guide also includes a section on creating custom annotations to help you extend Spring Boot’s capabilities to fit your needs.
+
+---
+
+</details>
+
+---
+
+## Must Known Annotations
+
+### 1\. `@SpringBootApplication`
+
+**What it does**: The "grand opening" of your Spring Boot app. It’s a combo of `@EnableAutoConfiguration`, `@ComponentScan`, and `@Configuration`. It tells Spring Boot to start the app, scan for components, and auto-configure based on dependencies.  
+**Easy analogy**: Like opening a restaurant—sets up the kitchen, hires staff, and prepares the menu automatically.  
+**Code Example:**
+
+```java
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class RestaurantApp {
+    public static void main(String[] args) {
+        SpringApplication.run(RestaurantApp.class, args);
+    }
+}
+```
+
+**Boundaries/Restrictions**: Place it on the main class only. It’s the entry point, not for random classes.  
+**Related Annotations**: `@EnableAutoConfiguration`, `@ComponentScan`, `@Configuration`.  
+**Parameters**: Rarely used directly, but inherits from its sub-annotations (e.g., `scanBasePackages` from `@ComponentScan`).
+
+---
+
+### 2\. `@RestController`
+
+**What it does**: Marks a class as a web controller that handles HTTP requests and returns data (usually JSON) directly. Combines `@Controller` and `@ResponseBody`.  
+**Easy analogy**: The chef who cooks and serves food directly to customers (no fancy plating needed).  
+**Code Example:**
+
+```java
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@RestController
+public class MenuController {
+    @GetMapping("/menu")
+    public String getMenu() {
+        return "Pizza, Burger, Fries";
+    }
+}
+```
+
+**Boundaries/Restrictions**: Use it only for REST APIs, not traditional web pages (use `@Controller` for that).  
+**Related Annotations**: `@Controller`, `@ResponseBody`.  
+**Parameters**: None typically.
+
+---
+
+### 3\. `@RequestMapping`
+
+**What it does**: Maps HTTP requests (any method: GET, POST, etc.) to a method or class. It’s the "menu board" for routing requests.  
+**Easy analogy**: The restaurant’s sign saying, “Order food here!”  
+**Code Example:**
+
+```java
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/orders")
+public class OrderController {
+    @RequestMapping("/new")
+    public String placeOrder() {
+        return "Order placed!";
+    }
+}
+```
+
+**Boundaries/Restrictions**: Generic—use specific mappings (e.g., `@GetMapping`) for clarity unless you need flexibility.  
+**Related Annotations**: `@GetMapping`, `@PostMapping`, etc.  
+**Parameters**: `value` (URL path), `method` (e.g., `RequestMethod.GET`), `produces` (e.g., `"application/json"`).
+
+---
+
+### 4\. `@GetMapping`, `@PostMapping`, `@PutMapping`, `@DeleteMapping`, `@PatchMapping`
+
+**What they do**: Specific shortcuts for `@RequestMapping` tied to HTTP methods (GET = fetch, POST = create, PUT = update, DELETE = remove, PATCH = partial update).  
+**Easy analogy**: Waiters taking specific orders: "Get me the menu" (GET), "Add a dish" (POST), etc.  
+**Code Example:**
+
+```java
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+public class DishController {
+    @GetMapping("/dishes")
+    public String getDishes() { return "List of dishes"; }
+
+    @PostMapping("/dishes")
+    public String addDish() { return "Dish added"; }
+}
+```
+
+**Boundaries/Restrictions**: Method-specific; don’t mix purposes (e.g., don’t use `@GetMapping` to save data).  
+**Related Annotations**: `@RequestMapping`.  
+**Parameters**: `value` (path), `produces`, `consumes`.
+
+---
+
+### 5\. `@Autowired`
+
+**What it does**: Automatically "wires" a dependency (like a service or repository) into your class. Spring injects it for you.  
+**Easy analogy**: The chef doesn’t hire waiters—Spring sends them automatically.  
+**Code Example:**
+
+```java
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class KitchenService {
+    private final WaiterService waiter;
+
+    @Autowired
+    public KitchenService(WaiterService waiter) {
+        this.waiter = waiter;
+    }
+}
+```
+
+**Boundaries/Restrictions**: Use on constructors (preferred), fields, or setters. Avoid overusing on fields (less testable).  
+**Related Annotations**: `@Inject`, `@Resource`.  
+**Parameters**: `required` (default true; set to false if optional).
+
+---
+
+### 6\. `@Component`, `@Service`, `@Repository`, `@Controller`
+
+**What they do**: Mark a class as a Spring-managed bean. `@Component` is generic; `@Service` for business logic, `@Repository` for data access, `@Controller` for web controllers.  
+**Easy analogy**: Staff roles—`@Component` (general worker), `@Service` (chef), `@Repository` (stock manager), `@Controller` (front-desk).  
+**Code Example:**
+
+```java
+import org.springframework.stereotype.Service;
+
+@Service
+public class ChefService {
+    public String cook() {
+        return "Cooking!";
+    }
+}
+```
+
+**Boundaries/Restrictions**: Use the specific one for clarity; don’t overuse `@Component`.  
+**Related Annotations**: `@Bean`, `@RestController`.  
+**Parameters**: `value` (bean name, optional).
+
+---
+
+### 7\. `@Configuration`
+
+**What it does**: Defines a class that provides bean definitions (like a recipe book for Spring).  
+**Easy analogy**: The restaurant’s manual for setting up the kitchen.  
+**Code Example:**
+
+```java
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
+
+@Configuration
+public class KitchenConfig {
+    @Bean
+    public Oven oven() {
+        return new Oven();
+    }
+}
+```
+
+**Boundaries/Restrictions**: Use for configuration, not business logic.  
+**Related Annotations**: `@Bean`, `@ComponentScan`.  
+**Parameters**: None typically.
+
+---
+
+### 8\. `@Bean`
+
+**What it does**: Registers a method’s return value as a Spring bean.  
+**Easy analogy**: A recipe in the manual—cook this dish and serve it.  
+**Code Example:**
+
+```java
+@Bean
+public Oven oven() {
+    return new Oven();
+}
+```
+
+**Boundaries/Restrictions**: Must be in a `@Configuration` class; avoid in regular classes.  
+**Related Annotations**: `@Configuration`.  
+**Parameters**: `name` (custom bean name).
+
+---
+
+### 9\. `@Entity`
+
+**What it does**: Marks a class as a database entity (a table in JPA/Hibernate).  
+**Easy analogy**: A customer order form that gets saved in the records.  
+**Code Example:**
+
+```java
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class Order {
+    @Id
+    private Long id;
+    private String item;
+    // getters, setters
+}
+```
+
+**Boundaries/Restrictions**: Requires JPA (e.g., Hibernate); needs `@Id`.  
+**Related Annotations**: `@Table`, `@Id`, `@GeneratedValue`.  
+**Parameters**: `name` (entity name, defaults to class name).
+
+---
+
+### 10\. `@Table`, `@Id`, `@GeneratedValue`
+
+**What they do**: `@Table` names the database table, `@Id` marks the primary key, `@GeneratedValue` auto-increments it.  
+**Easy analogy**: `@Table` = order book, `@Id` = order number, `@GeneratedValue` = auto-assigned order number.  
+**Code Example:**
+
+```java
+@Entity
+@Table(name = "orders")
+public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+}
+```
+
+**Boundaries/Restrictions**: JPA-specific; `@GeneratedValue` needs a strategy (e.g., `IDENTITY`, `SEQUENCE`).  
+**Related Annotations**: `@Entity`, `@Column`.  
+**Parameters**: `@Table(name)`, `@GeneratedValue(strategy)`.
+
+---
+
+### 11\. `@EnableAutoConfiguration`
+
+**What it does**: Auto-configures Spring Boot based on dependencies (e.g., adds a database if JPA is present).  
+**Easy analogy**: Auto-orders supplies based on what’s in the kitchen.  
+**Code Example**: Rarely used standalone (part of `@SpringBootApplication`).  
+**Boundaries/Restrictions**: Avoid using directly unless customizing `@SpringBootApplication`.  
+**Related Annotations**: `@SpringBootApplication`.  
+**Parameters**: `exclude` (disable specific auto-configurations).
+
+---
+
+### 12\. `@ComponentScan`
+
+**What it does**: Tells Spring where to look for components (e.g., `@Service`, `@Repository`).  
+**Easy analogy**: Hiring staff from specific departments.  
+**Code Example**: Usually part of `@SpringBootApplication`.
+
+```java
+@ComponentScan(basePackages = "com.restaurant")
+```
+
+**Boundaries/Restrictions**: Overuse can slow startup; keep it focused.  
+**Related Annotations**: `@SpringBootApplication`.  
+**Parameters**: `basePackages`.
+
+---
+
+### 13\. `@Value`
+
+**What it does**: Injects values from properties files (e.g., `application.properties`).  
+**Easy analogy**: Reading the daily special from a note.  
+**Code Example:**
+
+```java
+@Value("${restaurant.name}")
+private String restaurantName;
+```
+
+**Boundaries/Restrictions**: Needs a property source; use defaults (e.g., `${key:default}`) if optional.  
+**Related Annotations**: None directly.  
+**Parameters**: String with `${property}` syntax.
+
+---
+
+### 14\. `@Profile`
+
+**What it does**: Activates beans only for specific environments (e.g., "dev", "prod").  
+**Easy analogy**: Special menu for breakfast vs. dinner.  
+**Code Example:**
+
+```java
+@Bean
+@Profile("dev")
+public Oven devOven() {
+    return new Oven();
+}
+```
+
+**Boundaries/Restrictions**: Needs active profile (set via `spring.profiles.active`).  
+**Related Annotations**: `@Configuration`.  
+**Parameters**: Profile name (e.g., `"dev"`).
+
+---
+
+### 15\. `@PathVariable`
+
+**What it does**: Extracts variables from the URL path.  
+**Easy analogy**: Taking the table number from the order slip.  
+**Code Example:**
+
+```java
+@GetMapping("/orders/{id}")
+public String getOrder(@PathVariable Long id) {
+    return "Order " + id;
+}
+```
+
+**Boundaries/Restrictions**: Must match URL template.  
+**Related Annotations**: `@RequestMapping`.  
+**Parameters**: `value` (variable name), `required` (default true).
+
+---
+
+### 16\. `@RequestParam`
+
+**What it does**: Extracts query parameters from the URL (e.g., `?name=John`).  
+**Easy analogy**: Customer’s extra request like "no salt."  
+**Code Example:**
+
+```java
+@GetMapping("/dishes")
+public String getDish(@RequestParam String name) {
+    return "Dish: " + name;
+}
+```
+
+**Boundaries/Restrictions**: Optional with `required=false`.  
+**Related Annotations**: `@GetMapping`.  
+**Parameters**: `value`, `defaultValue`, `required`.
+
+---
+
+### 17\. `@RequestBody`
+
+**What it does**: Binds the HTTP request body (e.g., JSON) to a method parameter.  
+**Easy analogy**: Taking the full customer order from a note.  
+**Code Example:**
+
+```java
+@PostMapping("/orders")
+public String createOrder(@RequestBody Order order) {
+    return "Order: " + order.getItem();
+}
+```
+
+**Boundaries/Restrictions**: Use with POST/PUT; needs a valid object.  
+**Related Annotations**: `@PostMapping`.  
+**Parameters**: None typically.
+
+---
+
+### 18\. `@ResponseBody`
+
+**What it does**: Returns data (e.g., JSON) directly instead of a view. Included in `@RestController`.  
+**Easy analogy**: Serving food without a plate—just the raw dish.  
+**Code Example:**
+
+```java
+@Controller
+public class DishController {
+    @GetMapping("/dishes")
+    @ResponseBody
+    public String getDishes() {
+        return "Pizza";
+    }
+}
+```
+
+**Boundaries/Restrictions**: Not needed with `@RestController`.  
+**Related Annotations**: `@RestController`.  
+**Parameters**: None.
+
+---
+
+### 19\. `@ExceptionHandler`
+
+**What it does**: Handles exceptions thrown by controller methods.  
+**Easy analogy**: The manager stepping in when the chef burns the dish.  
+**Code Example:**
+
+```java
+@RestController
+public class OrderController {
+    @GetMapping("/orders")
+    public String getOrder() {
+        throw new RuntimeException("No orders!");
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public String handleError() {
+        return "Oops, something went wrong!";
+    }
+}
+```
+
+**Boundaries/Restrictions**: Local to the controller unless globalized.  
+**Related Annotations**: `@ControllerAdvice` (for global handling).  
+**Parameters**: Exception class (e.g., `RuntimeException.class`).
 
 ---
 

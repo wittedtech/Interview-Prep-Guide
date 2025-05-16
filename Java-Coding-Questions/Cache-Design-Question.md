@@ -13,8 +13,8 @@
 
   **Data Structures:**
 
-  `HashMap:` For O(1) access to cache items by key.
-  Doubly Linked List: To keep track of the usage order of cache items. The most recently used items are moved to the front, and the least recently used items are at the end.
+  `HashMap`: For O(1) access to cache items by key.  
+  `Doubly Linked List`: To keep track of the usage order of cache items. The most recently used items are moved to the front, and the least recently used items are at the end.
 
   **Class Structure**
 

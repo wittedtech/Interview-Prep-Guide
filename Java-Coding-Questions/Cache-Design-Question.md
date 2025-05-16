@@ -24,19 +24,19 @@
 
   **Attributes:**
 
-  `capacity:` The maximum number of items the cache can hold.
-  map: A HashMap that maps keys to nodes in the doubly linked list.
-  head and tail: Nodes to represent the boundaries of the doubly linked list.
+  `capacity`: The maximum number of items the cache can hold.  
+  `map`: A HashMap that maps keys to nodes in the doubly linked list.  
+  `head and tail`: Nodes to represent the boundaries of the doubly linked list.
 
   **Methods:**
 
-  `get(int key):` Retrieves an item from the cache.
-  `put(int key, int value):` Adds or updates an item in the cache.
-  `Helper` methods for managing the doubly linked list:
-  `addNode(Node node):` Adds a new node right after the head.
-  `removeNode(Node node):` Removes an existing node from the list.
-  `moveToHead(Node node):` Moves an existing node to the head.
-  `popTail():` Removes the node at the tail and returns it.
+  `get(int key):` Retrieves an item from the cache.  
+  `put(int key, int value):` Adds or updates an item in the cache.  
+  `Helper` methods for managing the `doubly linked list`:  
+  `addNode(Node node):` Adds a new node right after the head.  
+  `removeNode(Node node):` Removes an existing node from the list.  
+  `moveToHead(Node node):` Moves an existing node to the head.  
+  `popTail():` Removes the node at the tail and returns it.  
 
   **Node Class**
 

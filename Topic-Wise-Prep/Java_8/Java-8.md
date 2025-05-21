@@ -23,3 +23,19 @@
 19. Demonstrate the use of a lambda expression to group elements in a list by a specific criterion.
 20. Implement a lambda expression to find the first element in a stream that matches a given predicate.
 21. Write a lambda expression to concatenate a list of strings with a delimiter.
+
+## Stream API Questions
+
+1. Find the employee with the highest salary from a list of employee objects using streams.
+2. Concatenate a list of strings into a single
+   •string, separated by commas, using streams.
+3. Find the first non-repeating character in a string using streams.
+4. Filter out movies of a specific genre and\*
+   •
+   collect them into a set using streams.•
+   ;. Find the first name of the oldest person in a list of Person objects using streams.
+5. Filter out null values from a list of strings using streams.
+6. Find the sum of the squares of a list of integers using streams.
+7. Skip the first 7 elements in a list and then. print the rest using streams.
+   ). Generate an infinite sequence of random numbers and print the first 10 using streams.
+   ). Check if any string in a list starts with a specific prefix using streams.
